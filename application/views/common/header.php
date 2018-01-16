@@ -11,8 +11,8 @@
                 </li>
             </ul>
             <ul class="quick-menu pull-right">
-                <li><a href="#travelo-login" class="soap-popupbox">MASUK</a></li>
-                <li><a href="#travelo-signup" class="soap-popupbox">DAFTAR</a></li>
+                <li><a href="<?php echo base_url(); ?>akun/login">MASUK</a></li>
+                <li><a href="<?php echo base_url(); ?>akun/register">DAFTAR</a></li>
                 <li class="ribbon currency">
                     <a href="#" title="">Mata Uang</a>
                     <ul class="menu mini">
@@ -40,9 +40,6 @@
                     <li class="menu-item-has-children">
                         <a href="<?php echo base_url(); ?>tiket">Tiket Pesawat</a>
                     </li>
-                    <!-- <li class="menu-item-has-children">
-                        <a href="<?php echo base_url(); ?>tiket">Tiket Kereta</a>
-                    </li> -->
                     <li class="menu-item-has-children">
                         <a href="<?php echo base_url(); ?>page/pembelian">Cara Pembelian</a>
                     </li>
@@ -58,7 +55,6 @@
                 </ul>
             </nav>
         </div>
-
         <nav id="mobile-menu-01" class="mobile-menu collapse">
             <ul id="mobile-primary-menu" class="menu">
                 <li class="menu-item-has-children">
@@ -104,60 +100,5 @@
             </ul>
 
         </nav>
-    </div>
-    <div id="travelo-signup" class="travelo-signup-box travelo-box">
-        <div class="seperator"><label>DAFTAR</label></div>
-        <form>
-            <div class="form-group">
-                <input type="text" class="input-text full-width" placeholder="Nama Depan">
-            </div>
-            <div class="form-group">
-                <input type="text" class="input-text full-width" placeholder="Nama Belakang">
-            </div>
-            <div class="form-group">
-                <input type="text" class="input-text full-width" placeholder="Alamat Email">
-            </div>
-            <div class="form-group">
-                <input type="password" class="input-text full-width" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <input type="password" class="input-text full-width" placeholder="Konfirmasi Password">
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Berlangganan email
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <p class="description">Mendaftar berarti mematuhi semua peraturan.</p>
-            </div>
-            <button type="submit" class="full-width btn-medium">DAFTAR</button>
-        </form>
-        <div class="seperator"></div>
-        <p>Sudah mempunyai akun? <a href="#travelo-login" class="goto-signup soap-popupbox">Masuk</a></p>
-    </div>
-    <div id="travelo-login" class="travelo-login-box travelo-box">
-        <div class="seperator"><label>MASUK</label></div>
-        <form>
-            <div class="form-group">
-                <input type="text" class="input-text full-width" placeholder="Alamat Email">
-            </div>
-            <div class="form-group">
-                <input type="password" class="input-text full-width" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <a href="#" class="forgot-password pull-right">Lupa Password?</a>
-                <div class="checkbox checkbox-inline">
-                    <label>
-                        <input type="checkbox"> Ingat saya
-                    </label>
-                </div>
-                <button type="submit" class="full-width btn-medium">MASUK</button>
-            </div>
-        </form>
-        <div class="seperator"></div>
-        <p>Belum mempunyai akun? <a href="#travelo-signup" class="goto-signup soap-popupbox">Daftar</a></p>
     </div>
 </header>

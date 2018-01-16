@@ -8,7 +8,7 @@
   * @url    https://recodeku.blogspot.com
   */
  
- class Simple_login {
+ class Ndol_login {
  
      // SET SUPER GLOBAL
      var $CI = NULL;
@@ -35,9 +35,9 @@
  
          if($query->num_rows() == 1) {
              //ambil data user berdasar username
-             $row  = $this->CI->db->query('SELECT id_user FROM users where username = "'.$username.'"');
+             $row  = $this->CI->db->query('SELECT id FROM users where username = "'.$username.'"');
              $admin     = $row->row();
-             $id   = $admin->id_user;
+             $id   = $admin->id;
  
              //set session user
              $this->CI->session->set_userdata('username', $username);
@@ -45,7 +45,7 @@
              $this->CI->session->set_userdata('id', $id);
  
              //redirect ke halaman dashboard
-             redirect(site_url('dashboard'));
+             redirect(site_url('akun'));
          }else{
  
              //jika tidak ada, set notifikasi dalam flashdata.
