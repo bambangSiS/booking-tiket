@@ -2,6 +2,27 @@
     <div class="topnav hidden-xs">
         <div class="container">
             <ul class="quick-menu pull-left">
+                <li class="ribbon">
+                    <a href="#">Bahasa</a>
+                    <ul class="menu mini">
+                        <li class="active"><a href="#" title="Indonesia">Indonesia</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="quick-menu pull-right">
+                <li><a href="<?php echo base_url(); ?>akun/login">MY ACCOUNT</a></li>
+                <li class="ribbon currency">
+                    <a href="#" title="">Mata Uang</a>
+                    <ul class="menu mini">
+                        <li class="active"><a href="#" title="IDR">Rupiah</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- 
+    <div class="topnav hidden-xs">
+        <div class="container">
+            <ul class="quick-menu pull-left">
                 <li><a href="<?php echo base_url(); ?>akun">AKUN SAYA</a></li>
                 <li class="ribbon">
                     <a href="#">Bahasa</a>
@@ -21,7 +42,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> -->
     <div class="main-header">
         <a href="#mobile-menu-01" data-toggle="collapse" class="mobile-menu-toggle">
             Mobile Menu Toggle
@@ -58,22 +79,22 @@
         <nav id="mobile-menu-01" class="mobile-menu collapse">
             <ul id="mobile-primary-menu" class="menu">
                 <li class="menu-item-has-children">
-                    <a href="index.html">Home</a>
+                    <a href="<?php echo base_url(); ?>tiket">Home</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="hotel-index.html">Hotels</a>
+                    <a href="hotel-index.html">Tiket Pesawat</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="flight-index.html">Flights</a>
+                    <a href="<?php echo base_url(); ?>page/pembelian">Cara Pembelian</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="car-index.html">Cars</a>
+                    <a href="<?php echo base_url(); ?>page/about">Tentang Kami</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="cruise-index.html">Cruises</a>
+                    <a href="<?php echo base_url(); ?>page/kontak">Hubungi Kami</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="#">Shortcodes</a>
+                    <a href="<?php echo base_url(); ?>admin">Admin</a>
                 </li>
             </ul>
 
