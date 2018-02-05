@@ -8,55 +8,20 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-		<header class="main-header">
-			<a href="index2.html" class="logo">
-				<span class="logo-mini"><b>T</b>Om</span>
-				<span class="logo-lg">Tiket Om</span>
-			</a>
-			<nav class="navbar navbar-static-top">
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<li class="dropdown user user-menu">
-							<a href="http://localhost/ukk">
-								<span class="hidden-xs">View Store</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</header>
-		<aside class="main-sidebar">
-			<section class="sidebar">
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header"><i class="fa fa-reorder"> MENU NAVIGASI</i></li>
-					<li><a href="#"><i class="fa fa-dashboard"></i> <span>Dasboard</span></a></li>
-					<li><a href="#""><i class="fa fa-user"></i> <span>Users</span></a></li>
-					<li><a href="#"><i class="fa fa-ticket"></i> <span>Data Tiket</span></a></li>
-					<li><a href="#"><i class="fa fa-user"></i> <span>Data User</span></a></li>
-				</ul>
-			</section>
-		</aside>
+		<?php $this->load->view('admin/common/header'); ?>
+		<?php $this->load->view('admin/common/menu'); ?>
 		<div class="content-wrapper">
 			<section class="content-header">
-				<!-- <h1>Dashboard</h1> -->
+				<h1>Manage Data</h1>
 				<div class="row">
-					<div class="col-sm-2 col-md-2">
-						<a href="<?php echo base_url(); ?>admin/destinations/add"><button type="button" class="btn btn-primary top_button"><span class="glyphicon glyphicon-plus"></span> </button></a>
-				 </div>
-			 </div>
+				</div>
 			</section>
 			<section class="content">
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Daftar Kota Tujuan</h3>
+								<h3 class="box-title">Kota Tujuan</h3>
 								<div class="box-tools">
 									<div class="input-group input-group-sm" style="width: 150px;">
 										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -66,31 +31,27 @@
 									</div>
 								</div>
 							</div>
-							<div class="table-responsive">
-							<table class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>City</th>
-										<th>Options</th>
-									</tr><?php foreach ($destination as $data){?>
-								</thead>
-								<tbody>
-									<tr>
-										<td><?php echo $data->id ?></td>
-										<td><?php echo $data->destination ?></td>
-										<td style="text-align:center" width="20%">
-											<div class="btn-group" role="group">
-												<a href="#" class="btn btn-default btn-xs"><span class="fa fa-pencil">Edit</span></a>
-												<a href="#" class="btn btn-default btn-xs"><span class="fa fa-trash"> Delete</span></a>
-											</div>
-										</td>
-									</tr>
-									<?php } ?>
-								</tbody>
+							<!-- /.box-header -->
+						<div class="box-body table-responsive no-padding">
+							<table class="table table-hover">
+							<tbody>
+								<tr>
+									<th width="15%">No</th>
+									<th>Kota</th>
+									<th width="15%">Action</th>
+									<?php $no = 1; ?>
+								</tr><?php foreach ($destination as $data){?>
+								<tr>
+									<td><?php  echo $no++; ?></td>
+									<td><?php echo $data->destination ?></td>
+									<td><a type="button" href="<?php echo base_url('admin/destinations/edit/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
+										<a type="button" href="<?php echo base_url('admin/destinations/del/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-trash"> Hapus</span></a>
+									<!-- <a class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a> --></td>
+								</tr><?php } ?>
+							</tbody>
 							</table>
 						</div>  
-						</div>
+					</div>
 					</div>
 				</div>
 			</div>

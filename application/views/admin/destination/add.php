@@ -31,17 +31,7 @@
 		</div>
 	  </nav>
 	</header>
-	<aside class="main-sidebar">
-	  <section class="sidebar">
-		<ul class="sidebar-menu" data-widget="tree">
-		  <li class="header"><i class="fa fa-reorder"> MENU NAVIGASI</i></li>
-		  <li><a href="#"><i class="fa fa-dashboard"></i> <span>Dasboard</span></a></li>
-		  <li><a href="#""><i class="fa fa-user"></i> <span>Users</span></a></li>
-		  <li><a href="#"><i class="fa fa-ticket"></i> <span>Data Tiket</span></a></li>
-		  <li><a href="#"><i class="fa fa-user"></i> <span>Data User</span></a></li>
-		</ul>
-	  </section>
-	</aside>
+<?php $this->load->view('admin/common/menu'); ?>
 	<div class="content-wrapper">
 	  <section class="content-header">
 		<h1>Tambah Kota</h1>
@@ -54,20 +44,19 @@
 			</div>
 			<!-- /.box-header -->
 			<!-- form start -->
-			<form class="form-horizontal">
+			<form action="<?php echo base_url(). 'admin/destinations/add_destination'; ?>" method="post" class="form-horizontal">
 				<div class="box-body">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Nama Kota</label>
-
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="inputEmail3" placeholder="Nama Kota">
+							<input type="text" class="form-control" name="destination" placeholder="Nama Kota">
 						</div>
 					</div>
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<button type="submit" class="btn btn-default"><a href="<?php echo base_url(); ?>admin/destinations">Kembali</a></button>
-					<button type="submit" class="btn btn-info pull-right">Tambah</button>
+					<button class="btn btn-default">Kembali</button>
+					<button type="submit" class="btn btn-info pull-right" name="btnSubmit">Tambah</button>
 				</div>
 				<!-- /.box-footer -->
 			</form>

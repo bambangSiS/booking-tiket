@@ -23,39 +23,39 @@
 					<div class="search-box">
 						<ul class="search-tabs clearfix">
 							<li class="active"><a  data-toggle="tab"><i class="soap-icon-plane-right takeoff-effect"></i><span>CARI TIKET PESAWAT</span></a></li>
-							<!-- <li><a href="#flight-and-hotel-tab" data-toggle="tab"><i class="soap-icon-car"></i><span>TIKET KERETA API</span></a></li> -->
 						</ul>
 						<div class="visible-mobile">
 							<ul id="mobile-search-tabs" class="search-tabs clearfix">
 								<li class="active"><a>TIKET PESAWAT</a></li>
-								<!-- <li><a href="#flight-and-hotel-tab">TIKET KERETA API</a></li> -->
 							</ul>
 						</div>
 						<div class="search-tab-content"><!-- KOTAK PENCARIAN -->
 							<!-- TIKET PESAWAT -->
 							<div class="tab-pane fade active in" id="flights-tab">
-								<form action="result" method="post">
+								<form action="<?php echo base_url(); ?>pesawat/cari" method="get">
 									<h6 class="title"><b>Mau pergi ke mana om?</b></h6>
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group">
-												<!-- <input type="text" class="input-text full-width" placeholder="Kota Keberangkatan" /> -->
-												<select class="input-text full-width">
-													<option>Kota Keberangkatan</option>
-													<option>JAKARTA (JKT)</option>
-													<option>YOGYAKARTA (YKT)</option>
-													<option>SEMARANG (SMG)</option>
+												<select name="rute_from" class="input-text full-width" required>
+													<option value="">Dari</option>
+													<?php foreach ($destination as $data) {
+														# code...
+													?>
+													<option value="<?php echo $data->destination ?>"><?php echo $data->destination ?></option>
+													<?php } ?>
 												</select>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group">
-												<!-- <input type="text" class="input-text full-width" placeholder="Kota Tujuan" /> -->
-												<select class="input-text full-width">
-													<option>Kota Tujuan</option>
-													<option>JAKARTA (JKT)</option>
-													<option>YOGYAKARTA (YKT)</option>
-													<option>SEMARANG (SMG)</option>
+												<select name="rute_to" class="input-text full-width" required>
+													<option value="">Ke</option>
+													<?php foreach ($destination as $data) {
+														# code...
+													?>
+													<option value="<?php echo $data->iso ?>"><?php echo $data->destination ?></option>
+													<?php } ?>
 												</select>
 											</div>
 											<div class="form-group row">
@@ -64,8 +64,8 @@
 										<div class="col-md-4">
 											<div class="form-group row">
 												<div class="col-xs-6">
-													<div class="datepicker-wrap">
-														<input type="text" class="input-text full-width" placeholder="Waktu" />
+													<div>
+														<input name="depart_at" type="date" class="input-text full-width tanggal" id="datepicker" placeholder="Waktu" required/>
 													</div>
 												</div>
 												<div class="col-xs-3">
@@ -87,7 +87,7 @@
 											</div>
 											<div class="form-group row">
 												<div class="col-xs-6 pull-right">
-													<button class="full-width">CARI TIKET</button>
+													<button type="submit" class="full-width">CARI TIKET</button>
 												</div>
 											</div>
 										</div>

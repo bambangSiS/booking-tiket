@@ -18,13 +18,16 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
 	public function index()
 	{
-		$this->load->view('home');
+		$this->load->model('m_admin');
+		$data['destination']=$this->m_account->destination();
+		$this->load->view('home',$data);
 	}
-	public function page($pembelian, $kontak)
-    {
-        echo $pembelian;
-        echo $kontak;
+
+    function result(){
+    	$data['rute']=$this->m_account->cari();
+    	$this->load->view('cari', $data);
     }
 }
