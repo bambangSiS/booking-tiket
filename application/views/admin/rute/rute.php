@@ -8,29 +8,7 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-		<header class="main-header">
-			<a href="index2.html" class="logo">
-				<span class="logo-mini"><b>T</b>Om</span>
-				<span class="logo-lg">Tiket Om</span>
-			</a>
-			<nav class="navbar navbar-static-top">
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<li class="dropdown user user-menu">
-							<a href="http://localhost/ukk">
-								<span class="hidden-xs">View Store</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</header>
+		<?php $this->load->view('admin/common/header'); ?>
 		<?php $this->load->view('admin/common/menu'); ?>
 		<div class="content-wrapper">
 			<section class="content-header">
@@ -67,20 +45,22 @@
 										<th>Tujuan</th>
 										<th>Maskapai</th>
 										<th>Harga</th>
+										<th>Dibuat</th>
 										<th>Action</th>
 										<?php $no = 1; ?>
 									</tr><?php foreach ($rute as $data){?>
 									<tr>
 										<td><?php  echo $no++; ?></td>
-										<td><?php echo date('m M Y h:i'); $data->depart_at ?></td>
-										<td><?php echo date('m M Y h:i'); $data->arrival ?></td>
-										<td><?php echo $data->mangkat ?> (<?php echo $data->rute_from ?>)</td>
-										<td><?php echo $data->mangkat ?> (<?php echo $data->rute_from ?>)</td>
-										<td><?php echo $data->maskapai ?></td>
-										<td>Rp. <?php echo $data->price ?></td>
+										<td><?php echo date_format(date_create($data['depart_at']), 'd M Y H:i');  ?></td>
+										<td><?php echo date_format(date_create($data['arrival']), 'd M Y H:i');  ?></td>
+										<td><?php echo $data['mangkat_from'] ?> <br><?php echo $data['rute_from'] ?> (<?php echo $data['iso_from']?>)</td>
+										<td><?=$data['mangkat_to']?> <br><?=$data['rute_to']?> (<?=$data['iso_to']?>)</td>
+										<td><?php echo $data['maskapai'] ?></td>
+										<td>Rp. <?php echo $data['price'] ?></td>
+										<td><?php echo date_format(date_create($data['creat_date']), 'd M Y H:i');  ?></td>
 										<td>
-											<a href="" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
-											<a href="<?php echo base_url('admin/rute/del/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
+											<a href="<?php echo base_url('admin/rute/edit/'.$data['id']) ?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
+											<a href="<?php echo base_url('admin/rute/del/'.$data['id']) ?>" onclick="return confirm('Delete ?')" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
 										</td>
 									</tr><?php } ?>
 								</tbody>

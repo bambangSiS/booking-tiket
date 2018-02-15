@@ -216,16 +216,16 @@
 							<div class="flight-list listing-style3 flight">
 								<article class="box">
 									<figure class="col-xs-3 col-sm-2">
-										<span><img alt="" src="http://placehold.it/270x160"></span>
+										<span><img alt="" src="<?=base_url(); ?>gudang/images/logo/<?=$data->img ?>"></span>
 									</figure>
 									<div class="details col-xs-9 col-sm-10">
 										<div class="details-wrapper">
 											<div class="first-row">
 												<div>
-													<h4 class="box-title"><?php echo $data->rute_from; ?>  to <?php echo $data->rute_to; ?> <small><?php echo $data->id_transportation; ?> </small></h4>
+													<h4 class="box-title"><?php echo $data->bandarafrom; ?> (<?php echo $data->isofrom; ?> )  - <?php echo $data->bandarato; ?> (<?php echo $data->isoto; ?> )  <small><?php echo $data->maskapai; ?></small></h4>
 												</div>
 												<div>
-													<span class="price"><small>AVG/PERSON</small>IDR. <?php echo $data->price; ?></span>
+													<span class="price"><small>Harga/orang</small>IDR. <?php echo $data->price; ?></span>
 												</div>
 											</div>
 											<div class="second-row">
@@ -233,24 +233,29 @@
 													<div class="take-off col-sm-4">
 														<div class="icon"><i class="soap-icon-plane-right yellow-color"></i></div>
 														<div>
-															<span class="skin-color">Pergi</span><br /><?php echo date('H : i'); $data->depart_at; ?>
+															<span class="skin-color">Pergi</span><br /><?php echo date_format(date_create($data->depart_at), 'H:i');  ?>
 														</div>
 													</div>
 													<div class="landing col-sm-4">
 														<div class="icon"><i class="soap-icon-plane-right yellow-color"></i></div>
 														<div>
-															<span class="skin-color">Tiba</span><br /><?php echo $data->arrival; ?> 
+															<span class="skin-color">Tiba</span><br /><?php echo date_format(date_create($data->arrival), 'H:i');  ?>
 														</div>
 													</div>
 													<div class="total-time col-sm-4">
 														<div class="icon"><i class="soap-icon-clock yellow-color"></i></div>
 														<div>
-															<span class="skin-color">Lama Perjalanan</span><br />2 jam
+															<?php 
+																$date1 = new DateTime($data->depart_at);
+																$date2 = new DateTime($data->arrival);
+																$diff = $date1->diff($date2);
+															 ?>
+															<span class="skin-color">Lama Perjalanan</span><br /><?php echo $diff->h.' Jam '.$diff->i.' menit ' ?>
 														</div>
 													</div>
 												</div>
 												<div class="action">
-													<a href="<?php echo base_url(); ?>pesawat/booking/" class="button btn-small full-width">SELECT NOW</a>
+													<a href="<?php echo base_url(); ?>pesawat/booking?id=<?=$data->id; ?>&seat_qty=<?=$seat_qty; ?>" class="button btn-small full-width">BOOKING</a>
 												</div>
 											</div>
 										</div>

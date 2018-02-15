@@ -32,7 +32,7 @@
 						<div class="search-tab-content"><!-- KOTAK PENCARIAN -->
 							<!-- TIKET PESAWAT -->
 							<div class="tab-pane fade active in" id="flights-tab">
-								<form action="<?php echo base_url(); ?>pesawat/cari" method="get">
+								<form action="<?php echo base_url(); ?>pesawat/" method="get">
 									<h6 class="title"><b>Mau pergi ke mana om?</b></h6>
 									<div class="row">
 										<div class="col-md-4">
@@ -42,7 +42,7 @@
 													<?php foreach ($destination as $data) {
 														# code...
 													?>
-													<option value="<?php echo $data->destination ?>"><?php echo $data->destination ?></option>
+													<option value="<?php echo $data->iso ?>"><?php echo $data->destination ?></option>
 													<?php } ?>
 												</select>
 											</div>
@@ -64,15 +64,18 @@
 										<div class="col-md-4">
 											<div class="form-group row">
 												<div class="col-xs-6">
-													<div>
-														<input name="depart_at" type="date" class="input-text full-width tanggal" id="datepicker" placeholder="Waktu" required/>
+													<div class="datepicker-wrap">
+														<input name="depart_at" type="text" class="input-text full-width" placeholder="waktu" />
 													</div>
 												</div>
 												<div class="col-xs-3">
 													<div class="selector">
-														<select class="full-width">
+														<select class="full-width" name="seat_qty" required>
 															<option value="">Dewasa</option>
 															<option value="1">01</option>
+															<option value="2">02</option>
+															<option value="3">03</option>
+															<option value="4">04</option>
 														</select>
 													</div>
 												</div>

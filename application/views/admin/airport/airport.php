@@ -21,7 +21,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Bandara</h3>
+								<h3 class="box-title">Airport</h3>
 								<div class="box-tools">
 									<div class="input-group input-group-sm" style="width: 150px;">
 										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -38,6 +38,7 @@
 								<tr>
 									<th width="15%">No</th>
 									<th>Nama Bandara</th>
+									<th>Kode Bandara</th>
 									<th>Kota</th>
 									<th width="15%">Action</th>
 									<?php $no = 1; ?>
@@ -45,9 +46,10 @@
 								<tr>
 									<td><?php  echo $no++; ?></td>
 									<td><?php echo $data->name ?></td>
-									<td>asd</td>
+									<td><?php echo $data->iso ?></td>
+									<td><?php echo $data->destination ?></td>
 									<td><a type="button" href="<?php echo base_url('admin/airport/edit/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
-										<a type="button" href="<?php echo base_url('admin/airport/del/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-trash"> Hapus</span></a>
+										<a type="button" href="<?php echo base_url('admin/airport/del/'.$data->id) ?>" onclick="return confirm('Delete ?')"  class="btn btn-default btn-sm"><span class="fa fa-trash"> Hapus</span></a>
 									<!-- <a class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a> --></td>
 								</tr><?php } ?>
 							</tbody>

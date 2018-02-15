@@ -13,7 +13,8 @@
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>Create Data</h1>
-				<form action="<?php echo base_url(). 'admin/transportation/add_transportation'; ?>" method="post" enctype="multipart/form-data">
+				<form action="<?php echo base_url(). 'admin/transportation/update'; ?>" method="post" enctype="multipart/form-data">
+					<?php foreach ($transportation as $t) {?>
 				</section>
 				<section class="content">
 					<div class="box box-info">
@@ -22,12 +23,18 @@
 						</div>
 						<div class="box-body">
 							<div class="form-group">
+								<label>Gambar</label>
+								<div class="input-group">
+									<img src="<?=base_url() ?>gudang/images/logo/<?php echo $t->img ?>" height="100px">
+								</div>
+							</div>
+							<div class="form-group">
 								<label>Logo</label>
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-image"></i>
 									</div>
-									<input name="img" type="file" class="form-control" required />
+									<input name="img" type="file" class="form-control"/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -36,7 +43,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-plane"></i>
 									</div>
-									<input name="name" type="text" class="form-control" placeholder="Pesawat" required/>
+									<input name="name" type="text" class="form-control" placeholder="Pesawat" value="<?php echo $t->name ?>" required/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -45,12 +52,12 @@
 									<div class="input-group-addon">
 										<i class="fa fa-qrcode"></i>
 									</div>
-									<input name="code" type="text" class="form-control" placeholder="Kode" required/>
+									<input name="code" type="text" class="form-control" value="<?php echo $t->code ?>"  placeholder="Kode" required/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>Deskripsi</label>
-								<textarea name="description" class="form-control" rows="3" placeholder="Deskripsi ..."></textarea>
+								<textarea name="description" class="form-control" rows="3"><?php echo $t->description ?></textarea>
 							</div>
 							<div class="form-group">
 								<label>Jumlah Kursi</label>
@@ -58,13 +65,15 @@
 									<div class="input-group-addon">
 										<i class="fa fa-at"></i>
 									</div>
-									<input name="seat_qty" type="text" class="form-control" placeholder="qty" required/>
+									<input name="seat_qty" type="text" class="form-control" value="<?php echo $t->seat_qty ?>"  placeholder="qty" required/>
+									<input name="id" type="hidden"  value="<?php echo $t->id ?>"/>
 								</div>
 							</div>
 							<input type="submit" class="btn btn-primary" />
 						</div>
 					</div>
 				</section>
+				<?php } ?>
 			</form> 
 		</div>
 		<div class="control-sidebar-bg"></div>

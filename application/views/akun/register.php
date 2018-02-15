@@ -41,23 +41,35 @@
         <div class="seperator" style="text-align: center;"><label>DAFTAR</label></div>
             <?php echo form_open('akun/register');?>
             <div class="form-group">
-                <input type="text" class="input-text full-width" name="name" placeholder="Nama Lengkap" value="<?php echo set_value('name'); ?>">
+                <input type="text" class="input-text full-width" name="name" placeholder="Nama Lengkap" value="<?php echo set_value('name'); ?>" required>
                 <p><?php echo form_error('name'); ?></p>
             </div>
             <div class="form-group">
-                <input type="text" class="input-text full-width" placeholder="Username" name="username" value="<?php echo set_value('username'); ?>">
+                <input type="text" class="input-text full-width" placeholder="Username" name="username" value="<?php echo set_value('username'); ?>" required>
                 <p><?php echo form_error('username') ?></p>
             </div>
             <div class="form-group">
-                <input type="text" class="input-text full-width" placeholder="Alamat Email" name="email" value="<?php echo set_value('email'); ?>">
+                <input type="text" class="input-text full-width" placeholder="Alamat Email" name="email" value="<?php echo set_value('email'); ?>" required>
                 <p><?php echo form_error('email') ?></p>
             </div>
             <div class="form-group">
-                <input type="password" class="input-text full-width" placeholder="Password" name="password" value="<?php echo set_value('password'); ?>">
+                <input type="text" class="input-text full-width" placeholder="Telepon" name="telepon" value="<?php echo set_value('telepon'); ?>" required>
+                <p><?php echo form_error('telepon') ?></p>
+            </div>
+            <div class="form-group" >
+                <select class="input-text full-width" name="jenkel" required>
+                    <option value="">Jenis Kelamin</option>
+                    <option value="L">Laki Laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
+                <p><?php echo form_error('jenkel') ?></p>
+            </div>
+            <div class="form-group">
+                <input type="password" class="input-text full-width" placeholder="Password" name="password" value="<?php echo set_value('password'); ?>" required>
                 <p><?php echo form_error('password') ?></p>
             </div>
             <div class="form-group">
-                <input type="password" class="input-text full-width" placeholder="Konfirmasi Password" name="password_conf" value="<?php echo set_value('password_conf'); ?>">
+                <input type="password" class="input-text full-width" placeholder="Konfirmasi Password" name="password_conf" value="<?php echo set_value('password_conf'); ?>" required>
                 <p><?php echo form_error('password_conf') ?></p>
             </div>
             <div class="form-group">

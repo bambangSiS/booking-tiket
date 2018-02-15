@@ -6,6 +6,7 @@ class Transportation extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_admin');
+		$this->m_admin->sesiku();
 		$this->load->helper(array('form', 'url'));
 	}
 
@@ -23,27 +24,27 @@ class Transportation extends CI_Controller {
 	function add_transportation()
 	{
 		$id = $this->input->post('id');
-
 		$config['upload_path']          = './gudang/images/logo/';
-			$config['allowed_types']        = 'jpg|png';
-			$config['max_size']             = 100;
-			$config['max_width']            = 1024;
-			$config['max_height']           = 768;
-
-			$this->load->library('upload', $config);
+		// $config['allowed_types']        = 'png|jpg|PNG';
+		$config['allowed_types']        = '*';
+		$config['max_size']             = 100;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;	
 
 		$this->load->library('upload', $config);
 
-			if ( ! $this->upload->do_upload('img'))
-			{
-					$error = array('error' => $this->upload->display_errors());
-
-					$this->load->view('admin/transportation/add', $error);
-			}
-			else
-			{
-					$data = array('upload_data' => $this->upload->data());
-			}
+		if ( ! $this->upload->do_upload('img'))
+		{
+			$img = '';
+			$error = array('error' => $this->upload->display_errors());
+			$this->load->view('admin/transportation/add', $error);
+		}
+		else
+		{
+			$upload_data = $this->upload->data();
+			$data = array('upload_data' => $upload_data);
+			$img = $upload_data['file_name'];
+		}
 
 		$name = $this->input->post('name');
 		$code = $this->input->post('code');
@@ -62,44 +63,58 @@ class Transportation extends CI_Controller {
 		redirect('admin/transportation');
 	}
 
-	function do_upload()
-	{
-			$config['upload_path']          = './gudang/images/logo/';
-			$config['allowed_types']        = 'jpg|png';
-			$config['max_size']             = 100;
-			$config['max_width']            = 1024;
-			$config['max_height']           = 768;
-
-			$this->load->library('upload', $config);
-
-			if ( ! $this->upload->do_upload('userfile'))
-			{
-					$error = array('error' => $this->upload->display_errors());
-
-					$this->load->view('admin/transportation/add', $error);
-			}
-			else
-			{
-					$data = array('upload_data' => $this->upload->data());
-			}
-	}
-
 	function edit($id)
 	{
-		$where = array('id' => $id);
-		$data['transportation'] = $this->m_admin->edit_transportation('transportation',$where)->result();
+		$data['transportation'] = $this->m_admin->edit_transportation('transportation',$id)->result();
 		$this->load->view('admin/transportation/edit',$data);
 	}
 
-	function update($id){
-		$this->m_admin->update_transportation($id);
+	function update(){
+		$config['upload_path']          = './gudang/images/logo/';
+		$config['allowed_types']        = '*';
+		$config['max_size']             = 100;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;	
+
+		$this->load->library('upload', $config);
+		$id = $this->input->post('id');
+		$name = $this->input->post('name');
+		$code = $this->input->post('code');
+		$description = $this->input->post('description');
+		$seat_qty = $this->input->post('seat_qty');
+		if ( ! $this->upload->do_upload('img'))
+		{
+			$img = '';
+			$error = array('error' => $this->upload->display_errors());
+			$data = array(
+			'id' => $id,
+			'name' => $name,
+			'code' => $code,
+			'description' => $description,
+			'seat_qty' => $seat_qty,
+			);
+		}
+		else
+		{
+			$upload_data = $this->upload->data();
+			$data = array('upload_data' => $upload_data);
+			$img = $upload_data['file_name'];
+			$data = array(
+			'id' => $id,
+			'img' => $img,
+			'name' => $name,
+			'code' => $code,
+			'description' => $description,
+			'seat_qty' => $seat_qty,
+			);
+		}
+		$this->m_admin->update_transportation($id,$data);
 		redirect('admin/transportation','refresh');
 	}
 
 	function del($id)
 	{
 		$this->m_admin->hapus_transportation($id);
-		$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 		redirect('admin/transportation','refresh');
 	}
 

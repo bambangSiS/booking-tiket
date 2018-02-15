@@ -4,8 +4,8 @@
 			<img src="<?php echo base_url(); ?>gudang/admin/dist/img/user8-128x128.jpg" class="img-circle" alt="User Image">
 		</div>
 		<div class="pull-left info">
-			<p>John Doe</p>
-			<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+			<p><?= $this->session->name ?></p>
+			<a href="#"><i class="fa fa-circle text-success"></i> <?= $this->session->status ?></a>
 		</div>
 	</div>
 	<section class="sidebar">
@@ -24,7 +24,7 @@
 						<li><a href="<?php echo base_url(); ?>admin/transportation"><i class="fa fa-plane"></i> Transportation</a></li>
 						<li><a><i class="fa fa-book"></i> Reservation</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/destinations"><i class="fa fa-building"></i> Destination</a></li>
-						<li><a><i class="fa fa-building-o"></i> Airport</a></li>
+						<li><a href="<?php echo base_url(); ?>admin/airport"><i class="fa fa-building-o"></i> Airport</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/rute"><i class="fa fa-road"></i> Rute</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/members"><i class="fa fa-user"></i> User</a></li>
 					</ul>
@@ -39,7 +39,7 @@
 					<ul class="treeview-menu">
 						<li><a href="<?php echo base_url(); ?>admin/transportation/add"><i class="fa fa-plane"></i> Transportation</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/destinations/add"><i class="fa fa-building"></i> Destination</a></li>
-						<li><a href="<?php echo base_url(); ?>admin/destinations/add"><i class="fa fa-building-o"></i> Airport</a></li>
+						<li><a href="<?php echo base_url(); ?>admin/airport/add"><i class="fa fa-building-o"></i> Airport</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/rute/add"><i class="fa fa-road"></i> Rute</a></li>
 					</ul>
 				</li>
@@ -56,7 +56,7 @@
 				</li>
 			</li>
 			<li class="header"> AKUN</li>
-			<li><a href="#"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+			<li><a href="<?=base_url(); ?>admin/login/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
 		</ul>
 	</section>
 </aside>

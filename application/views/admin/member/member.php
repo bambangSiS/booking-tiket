@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Daftar User</title>
-<?php $this->load->view('admin/common/scatas'); ?>
+	<?php $this->load->view('admin/common/scatas'); ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -19,7 +19,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Member</h3>
+								<h3 class="box-title">User</h3>
 								<div class="box-tools">
 									<div class="input-group input-group-sm" style="width: 150px;">
 										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -32,37 +32,38 @@
 							<!-- /.box-header -->
 							<div class="box-body table-responsive no-padding">
 								<table class="table table-hover">
-									<tbody><tr>
-										<th>ID</th>
-										<th>Nama</th>
-										<th>Email</th>
-										<th>Username</th>
-										<th>Password</th>
-										<th width="20%">Action</th>
-									</tr><?php foreach ($users as $data){?>
-									<tr>
-										<td><?php echo $data->id ?></td>
-										<td><?php echo $data->nama ?></td>
-										<td><?php echo $data->email ?></td>
-										<td><?php echo $data->username ?></td>
-										<td>********</td>
-										<td>
-											<a href="" class="btn btn-default btn-xs"><span class="fa fa-eye"> Detail</span></a>
-											<a href="" class="btn btn-default btn-xs"><span class="fa fa-pencil"> Edit</span></a>
-											<a href="<?php echo base_url('admin/members/hapus_member/').$data->id?>" class="btn btn-default btn-xs"><span class="fa fa-trash"> Delete</span></a>
-										</td>
-									</tr>
-									<?php } ?>
-								</tbody></table>
-							</div>  
+									<tbody>
+										<tr role="row" class="odd">
+											<th>ID</th>
+											<th>Nama</th>
+											<th>Email</th>
+											<th>Username</th>
+											<th>Password</th>
+											<th width="20%">Action</th>
+										</tr><?php foreach ($users as $data){?>
+										<tr>
+											<td><?php echo $data->id ?></td>
+											<td><?php echo $data->nama ?></td>
+											<td><?php echo $data->email ?></td>
+											<td><?php echo $data->username ?></td>
+											<td>********</td>
+											<td>
+												<a href="" class="btn btn-default btn-xs"><span class="fa fa-eye"> Detail</span></a>
+												<a href="" class="btn btn-default btn-xs"><span class="fa fa-pencil"> Edit</span></a>
+												<a href="<?php echo base_url('admin/members/hapus_member/').$data->id?>" class="btn btn-default btn-xs"><span class="fa fa-trash"> Delete</span></a>
+											</td>
+										</tr>
+										<?php } ?>
+									</tbody></table>
+								</div>  
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		</div>
+		<div class="control-sidebar-bg"></div>
 	</div>
-	<div class="control-sidebar-bg"></div>
-</div>
-<?php $this->load->view('admin/common/scbawah'); ?>
+	<?php $this->load->view('admin/common/scbawah'); ?>
 </body>
 </html>

@@ -24,10 +24,10 @@
 								<h3 class="box-title">Transportation</h3>
 								<div class="box-tools">
 									<div class="input-group input-group-sm" style="width: 150px;">
-										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+										<!-- <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 										<div class="input-group-btn">
 											<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
@@ -52,8 +52,8 @@
 									<td><?php echo $data->name ?></td>
 									<td><?php echo $data->description ?></td>
 									<td><?php echo $data->seat_qty ?></td>
-									<td><a type="button" href="#" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
-									<button type="button" data-toggle="modal" data-href=#" class="btn btn-default btn-sm"><span class="fa fa-trash"> Hapus</span></button></td>
+									<td><a type="button" href="<?=base_url()  ?>admin/transportation/edit/<?php echo $data->id?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
+									<a type="button" href="<?=base_url()  ?>admin/transportation/del/<?php echo $data->id?>"  onclick="return confirm('Delete <?= $data->name ?>?')" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a></td>
 								</tr><?php } ?>
 							</tbody>
 							</table>
@@ -67,10 +67,5 @@
 	<div class="control-sidebar-bg"></div>
 </div>
 <?php $this->load->view('admin/common/scbawah'); ?>
-<script>
-	$('#deleteModal').on('show.bs.modal', function(e) {
-	$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
-</script>
 </body>
 </html>

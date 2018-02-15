@@ -1,7 +1,7 @@
 <header class="main-header">
-	<a href="index2.html" class="logo">
-		<span class="logo-mini"><b>T</b>Om</span>
-		<span class="logo-lg">Tiket Om</span>
+	<a href="<?php echo base_url(); ?>admin" class="logo">
+		<span class="logo-mini"><b>T</b>OM</span>
+		<span class="logo-lg"><b>TIKET OM</b></span>
 	</a>
 	<nav class="navbar navbar-static-top">
 		<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">

@@ -52,7 +52,7 @@
              $this->CI->session->set_flashdata('sukses','Username atau password anda salah, silakan coba lagi.. ');
  
              //redirect ke halaman login
-             redirect(site_url('login'));
+             redirect(site_url('akun/login'));
          }
           return false;
       }

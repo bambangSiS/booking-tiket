@@ -10,13 +10,8 @@
                 </li>
             </ul>
             <ul class="quick-menu pull-right">
-                <li><a href="<?php echo base_url(); ?>akun/login">MY ACCOUNT</a></li>
-                <li class="ribbon currency">
-                    <a href="#" title="">Mata Uang</a>
-                    <ul class="menu mini">
-                        <li class="active"><a href="#" title="IDR">Rupiah</a></li>
-                    </ul>
-                </li>
+                <li><a href="<?php echo base_url(); ?>akun">MY ACCOUNT</a></li>
+                <li><a href="<?php echo base_url(); ?>akun/Login/logout">LOGOUT</a></li>
             </ul>
         </div>
     </div><!-- 

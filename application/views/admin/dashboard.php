@@ -1,99 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Dashboard</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>gudang/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>gudang/admin/bower_components/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>gudang/admin/bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>gudang/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>gudang/admin/dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>gudang/admin/dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<?php $this->load->view('admin/common/scatas'); ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-		<header class="main-header">
-			<a href="index2.html" class="logo">
-				<span class="logo-mini"><b>T</b>Om</span>
-				<span class="logo-lg">Tiket Om</span>
-			</a>
-			<nav class="navbar navbar-static-top">
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<li class="dropdown user user-menu">
-							<a href="http://localhost/ukk">
-								<span class="hidden-xs">View Store</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</header>
-		<aside class="main-sidebar">
-			<section class="sidebar">
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header"><i class="fa fa-reorder"> MENU NAVIGASI</i></li>
-					<li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dasboard</span></a></li>
-					<li><a href="<?php echo base_url(); ?>admin/members"><i class="fa fa-user"></i> <span>Daftar Member</span></a></li>
-					<li><a href="tiket.php"><i class="fa fa-ticket"></i> <span>Data Tiket</span></a></li>
-					<li><a href=""><i class="fa fa-user"></i> <span>Data User</span></a></li>
-				</ul>
-			</section>
-		</aside>
+		<?php $this->load->view('admin/common/header'); ?>
+		<?php $this->load->view('admin/common/menu'); ?>
+
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>Dashboard</h1>
 			</section>
 			<section class="content">
 				<div class="row">
-					<div class="col-xs-12">
-						<div class="box">
-							<div class="box-header">
-								<h3 class="box-title">Daftar Member</h3>
-								<div class="box-tools">
-									<div class="input-group input-group-sm" style="width: 150px;">
-										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-										<div class="input-group-btn">
-											<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-										</div>
-									</div>
-								</div>
+					<div class="col-lg-3 col-xs-6">
+						<!-- small box -->
+						<div class="small-box bg-aqua">
+							<div class="inner">
+								<h3>150</h3>
+
+								<p>Kota</p>
 							</div>
-							<!-- /.box-header -->
-							<div class="box-body table-responsive no-padding">
-								<table class="table table-hover">
-									<tbody><tr>
-										<th>ID</th>
-										<th>Nama</th>
-										<th>Email</th>
-										<th>Username</th>
-										<th>Password</th>
-										<th colspan="2">Action</th>
-									</tr><?php foreach ($users as $data){?>
-									<tr>
-										<td><?php echo $data->id ?></td>
-										<td><?php echo $data->nama ?></td>
-										<td><?php echo $data->email ?></td>
-										<td><?php echo $data->username ?></td>
-										<td>********</td>
-										<td>Edit</td>
-										<td>Delete</td>
-									</tr>
-									<?php } ?>
-								</tbody></table>
-							</div>	
+							<div class="icon">
+								<i class="fa fa-building"></i>
+							</div>
+							<a href="<?=base_url() ?>admin/destinations" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
+					<!-- ./col -->
+					<div class="col-lg-3 col-xs-6">
+						<!-- small box -->
+						<div class="small-box bg-green">
+							<div class="inner">
+								<h3>53</h3>
+
+								<p>Bandara</p>
+							</div>
+							<div class="icon">
+								<i class="fa fa-building-o"></i>
+							</div>
+							<a href="<?=base_url() ?>admin/airport" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
+					<div class="col-lg-3 col-xs-6">
+						<!-- small box -->
+						<div class="small-box bg-yellow">
+							<div class="inner">
+								<h3>44</h3>
+
+								<p>Maskapai</p>
+							</div>
+							<div class="icon">
+								<i class="fa fa-plane"></i>
+							</div>
+							<a href="<?=base_url() ?>admin/transportation" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
+					<div class="col-lg-3 col-xs-6">
+						<!-- small box -->
+						<div class="small-box bg-red">
+							<div class="inner">
+								<h3>65</h3>
+
+								<p>Rute</p>
+							</div>
+							<div class="icon">
+								<i class="fa fa-road"></i>
+							</div>
+							<a href="<?=base_url() ?>admin/rute" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
 				</div>
 			</div>
 		</section>
@@ -108,18 +89,5 @@
 <script src="<?php echo base_url(); ?>gudang/admin/bower_components/fastclick/lib/fastclick.js"></script>
 <script src="<?php echo base_url(); ?>gudang/admin/dist/js/adminlte.min.js"></script>
 <script src="<?php echo base_url(); ?>gudang/admin/dist/js/demo.js"></script>
-<script>
-	$(function () {
-		$('#example1').DataTable()
-		$('#example2').DataTable({
-			'paging'      : true,
-			'lengthChange': false,
-			'searching'   : false,
-			'ordering'    : true,
-			'info'        : true,
-			'autoWidth'   : false
-		})
-	})
-</script>
 </body>
 </html>

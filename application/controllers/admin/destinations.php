@@ -6,6 +6,7 @@ class Destinations extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_admin');
+		$this->m_admin->sesiku();
 	}
 
 	public function index()
@@ -21,10 +22,22 @@ class Destinations extends CI_Controller {
 
 	function add_destination()
 	{
-		$data['destination'] = $this->input->post('destination');
+		// $data['destination'] = $this->input->post('destination');
+		// $this->m_admin->add_destination($data,'destination');
+		// $this->load->view('admin/destination/add', $data);
+		// redirect('admin/destinations','refresh');
+
+		$id = $this->input->post('id');
+		$destination = $this->input->post('destination');
+		$iso = $this->input->post('iso');
+
+		$data = array(
+			'id' => $id,
+			'destination' => $destination,
+			'iso' => $iso,
+		);
 		$this->m_admin->add_destination($data,'destination');
-		$this->load->view('admin/destination/add', $data);
-		redirect('admin/destinations','refresh');
+		redirect('admin/destinations');
 	}
 
 	function edit($id)
@@ -42,7 +55,6 @@ class Destinations extends CI_Controller {
 	function del($id)
 	{
 		$this->m_admin->hapus_destination($id);
-		$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 		redirect('admin/destinations','refresh');
 	}
 

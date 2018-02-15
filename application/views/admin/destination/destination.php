@@ -21,7 +21,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Kota Tujuan</h3>
+								<h3 class="box-title">Destination</h3>
 								<div class="box-tools">
 									<div class="input-group input-group-sm" style="width: 150px;">
 										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -38,14 +38,18 @@
 								<tr>
 									<th width="15%">No</th>
 									<th>Kota</th>
+									<th>Kode</th>
+									<th width="15%">Jumlah Bandara</th>
 									<th width="15%">Action</th>
 									<?php $no = 1; ?>
 								</tr><?php foreach ($destination as $data){?>
 								<tr>
 									<td><?php  echo $no++; ?></td>
 									<td><?php echo $data->destination ?></td>
+									<td><?php echo $data->iso ?></td>
+									<td>cek</td>
 									<td><a type="button" href="<?php echo base_url('admin/destinations/edit/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
-										<a type="button" href="<?php echo base_url('admin/destinations/del/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-trash"> Hapus</span></a>
+										<a type="button" href="<?php echo base_url('admin/destinations/del/'.$data->id) ?>"  onclick="return confirm('Delete <?=$data->destination ?> ?');" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
 									<!-- <a class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a> --></td>
 								</tr><?php } ?>
 							</tbody>

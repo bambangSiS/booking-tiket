@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
-	 *
+	 * https://github.com/ondol95/booking-tiket
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
 	 *	- or -

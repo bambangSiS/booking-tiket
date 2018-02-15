@@ -18,10 +18,37 @@
       return $this->db->get('destination')->result();
     }
 
-  	function cari(){
-  		$this->db->where('rute_from', $this->input->get('rute_from'));
-  		$this->db->where('rute_to', $this->input->get('rute_to'));
-  		$this->db->like('depart_at', $this->input->get('depart_at'));
-  		return $this->db->get('rute')->result();
-  	}
+    function transportation(){
+      return $this->db->get('transportation')->result();
+    }
+
+    function cari($rute_from,$rute_to,$depart_at,$seat_qty){
+      // return $this->db->query('SELECT * FROM `rute` 
+      //   INNER JOIN airport dari ON rute.rute_from=dari.id
+      //   INNER JOIN airport ke ON rute.rute_to=ke.id');
+      return $this->db->query('SELECT T.img,T.name as maskapai,rute.id,rute.depart_at,rute.arrival,dari.name as bandarafrom,dari.iso as isofrom,ke.iso as isoto,ke.name as bandarato,darikota.destination as darikota,kekota.destination as kekota, darikota.iso as dariiso,kekota.iso as keiso,price,T.seat_qty
+        FROM `rute` 
+        INNER JOIN airport dari ON rute.rute_from=dari.id
+        INNER JOIN airport ke ON rute.rute_to=ke.id
+        INNER JOIN destination darikota ON darikota.id=dari.id_destination
+        INNER JOIN destination kekota ON kekota.id=ke.id_destination
+        INNER JOIN transportation T On T.id=rute.id_transportation
+        WHERE darikota.iso="'.$rute_from.'" AND kekota.iso="'.$rute_to.'" AND depart_at LIKE "'.$depart_at.'%" AND T.seat_qty-(SELECT COUNT(*) FROM reservation WHERE rute_id=rute.id)>='.$seat_qty.'');
+    }
+
+    function booking($id){
+      return $this->db->query('SELECT T.img,T.name as maskapai,rute.id,rute.depart_at,rute.arrival,dari.name as bandarafrom,dari.iso as isofrom,ke.iso as isoto,ke.name as bandarato,darikota.destination as darikota,kekota.destination as kekota, darikota.iso as dariiso,kekota.iso as keiso,price,T.seat_qty
+        FROM `rute` 
+        INNER JOIN airport dari ON rute.rute_from=dari.id
+        INNER JOIN airport ke ON rute.rute_to=ke.id
+        INNER JOIN destination darikota ON darikota.id=dari.id_destination
+        INNER JOIN destination kekota ON kekota.id=ke.id_destination
+        INNER JOIN transportation T On T.id=rute.id_transportation
+        
+        WHERE rute.id='.$id.'');
+    }
+
+    function getuser($id){
+      return $this->db->query('SELECT * FROM users where id = "'.$id.'"')->result();
+    }
   }

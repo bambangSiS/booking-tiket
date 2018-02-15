@@ -13,7 +13,8 @@
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>Create Data</h1>
-				<form action="<?php echo base_url(). 'admin/rute/add_rute'; ?>" method="post">
+				<form action="<?php echo base_url(). 'admin/rute/update_rute'; ?>" method="post">
+					<?php foreach ($rute as $r){?>
 				</section>
 				<section class="content">
 					<div class="box box-info">
@@ -28,7 +29,7 @@
 										<i class="fa fa-plane"></i>
 									</div>
 									<select name="id_transportation" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true"><?php foreach ($transportation as $t){?>
-										<option value="<?php echo $t->id ?>"><?php echo $t->name ?></option><?php } ?>
+										<option value="<?php echo $t->id ?>" <?php echo ($t->id==$r['idmaskapai']?'selected':''); ?>><?php echo $t->name ?></option><?php } ?>
 									</select>
 								</div>
 								<div class="form-group">
@@ -37,10 +38,8 @@
 										<div class="input-group-addon">
 											<i class="fa fa-map-marker"></i>
 										</div>
-										<select name="kota_from" id="kota_from" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-											<option value="">Pilih Kota</option>
-											<?php foreach ($destination as $d){?>
-											<option value="<?php echo $d->id ?>"><?php echo $d->destination ?></option><?php } ?>
+										<select name="kota_from" id="kota_from" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true"><?php foreach ($destination as $d){?>
+											<option value="<?php echo $d->id ?>" <?php echo ($d->id==$r['idkotafrom']?'selected':''); ?>><?php echo $d->destination ?></option><?php } ?>
 										</select>
 									</div>
 									<div class="form-group">
@@ -50,7 +49,7 @@
 												<i class="fa fa-map-marker"></i>
 											</div>
 											<select name="rute_from" id="rute_from" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-												<option value="#">Pilih Bandara</option>
+												<?php echo $r['optionbandarafrom'] ?>
 											</select>
 										</div>
 										<div class="form-group">
@@ -60,10 +59,8 @@
 													<div class="input-group-addon">
 														<i class="fa fa-map-marker"></i>
 													</div>
-													<select name="rute_to" id="kota_to" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-														<option value="">Pilih Kota</option>
-														<?php foreach ($destination as $d){?>
-														<option value="<?php echo $d->id ?>"><?php echo $d->destination ?></option><?php } ?>
+													<select name="rute_to" id="kota_to" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true"><?php foreach ($destination as $d){?>
+														<option value="<?php echo $d->id ?>" <?php echo ($d->id==$r['idkotato']?'selected':''); ?>><?php echo $d->destination ?></option><?php } ?>
 													</select>
 												</div>
 												<div class="form-group">
@@ -73,7 +70,7 @@
 															<i class="fa fa-map-marker"></i>
 														</div>
 														<select name="rute_to" id="rute_to" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-															<option value="">Pilih Bandara</option>
+															<?php echo $r['optionbandarato'] ?>
 														</select>
 													</div>
 													<div class="form-group">
@@ -82,7 +79,7 @@
 															<div class="input-group-addon">
 																<i class="fa fa-calendar"></i>
 															</div>
-															<input name="depart_at" type="text" id="datetimepicker" class="form-control datepicker" required/>
+															<input name="depart_at" type="text" id="datetimepicker"  class="form-control datepicker" value="<?php echo date_format(date_create($r['depart_at']),'Y/m/d H:i') ?>" required/>
 														</div>
 														<div class="form-group">
 															<div class="form-group">
@@ -91,7 +88,7 @@
 																	<div class="input-group-addon">
 																		<i class="fa fa-calendar"></i>
 																	</div>
-																	<input name="arrival" type="text" id="datetimepicker3" class="form-control datepicker" required/>
+																	<input name="arrival" type="text" id="datetimepicker3" value="<?php echo date_format(date_create($r['arrival']),'Y/m/d H:i') ?>" class="form-control datepicker" required/>
 																</div>
 																<div class="form-group">
 																	<label>Harga : </label>
@@ -99,13 +96,14 @@
 																		<div class="input-group-addon">
 																			<i class="fa fa-money"></i>
 																		</div>
-																		<input name="price" type="text" class="form-control" required/>
+																		<input name="price" type="text" class="form-control" value="<?php echo $r['price'] ?>" required/>
+																		<input name="id" type="hidden" value="<?php echo $r['id'] ?>"/>
 																	</div>
 																</div>
 																<input type="submit" class="btn btn-primary" />
 															</div>
 														</div>
-													</section>
+													</section><?php } ?>
 												</form> 
 											</div>
 											<div class="control-sidebar-bg"></div>
@@ -117,10 +115,10 @@
 												{
 													minDate: 0,
 												});
-												$("#kota_from").change(function() {
+												$("#kota_from").change(function() { 
 													$.ajax({
 														method: "GET",
-														url: "getairport/"+$("#kota_from").val(),
+														url: "<?=base_url()?>admin/rute/getairport/"+$("#kota_from").val(),
 														type: "html"
 													})
 													.done(function( msg ) {
@@ -130,7 +128,7 @@
 												$("#kota_to").change(function() {
 													$.ajax({
 														method: "GET",
-														url: "getairport/"+$("#kota_to").val(),
+														url: "<?=base_url()?>admin/rute/getairport/"+$("#kota_to").val(),
 														type: "html"
 													})
 													.done(function( msg ) {
@@ -139,14 +137,6 @@
 												});
 
 											});
-											// $("#datetimepicker2").datetimepicker(
-											// {
-											// 	minDate: 0,
-											// });
-											// $("#datetimepicker3").datetimepicker(
-											// {
-											// 	minDate: 0,
-											// });
 										</script>
 									</body>
 									</html>

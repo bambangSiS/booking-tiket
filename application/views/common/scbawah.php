@@ -20,7 +20,7 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>gudang/components/jquery.bxslider/jquery.bxslider.min.js"></script>
     
     <!-- parallax -->
-    <script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>gudang/js/jquery.stellar.min.js"></script>
     
     <!-- waypoint -->
     <script type="text/javascript" src="<?php echo base_url(); ?>gudang/js/waypoints.min.js"></script>

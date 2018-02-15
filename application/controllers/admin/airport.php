@@ -6,35 +6,62 @@ class Airport extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_admin');
+		$this->m_admin->sesiku();
 	}
 
 	public function index()
 	{
-		$data['airport']=$this->m_admin->tampil_airport();
+		$data['airport']=$this->m_admin->tampil_airport()->result();
 		$this->load->view('admin/airport/airport',$data);
 	}
 
 	function add()
 	{
-		$this->load->view('admin/airport/add');
+		$data['destination']=$this->m_admin->tampil_destination();
+		$this->load->view('admin/airport/add',$data);
 	}
 
 	function add_airport()
 	{
-		$data['airport'] = $this->input->post('airport');
+		$id = $this->input->post('id');
+		$id_destination = $this->input->post('id_destination');
+		$name = $this->input->post('name');
+		$iso = $this->input->post('iso');
+
+		$data = array(
+			'id' => $id,
+			'id_destination' => $id_destination,
+			'name' => $name,
+			'iso' => $iso,
+		);
 		$this->m_admin->add_airport($data,'airport');
-		$this->load->view('admin/airport/add', $data);
-		redirect('admin/airport','refresh');
+		redirect('admin/airport');
+
+		// $data['airport'] = $this->input->post('airport');
+		// $this->m_admin->add_airport($data,'airport');
+		// redirect('admin/airport','refresh');
 	}
 
 	function edit($id)
 	{
-		$where = array('id' => $id);
-		$data['airport'] = $this->m_admin->edit_airport('airport',$where)->result();
+		$data['airport'] = $this->m_admin->edit_airport('airport',$id)->result();
 		$this->load->view('admin/airport/edit',$data);
 	}
 
 	function update($id){
+		$id = $this->input->post('id');
+		$id_destination = $this->input->post('id_destination');
+		$name = $this->input->post('name');
+		$iso = $this->input->post('iso');
+
+		$data = array(
+			'id' => $id,
+			'id_destination' => $id_destination,
+			'name' => $name,
+			'iso' => $iso,
+		);
+		$this->m_admin->add_airport($data,'airport');
+		redirect('admin/airport');
 		$this->m_admin->update_airport($id);
 		redirect('admin/airport','refresh');
 	}

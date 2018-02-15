@@ -209,6 +209,7 @@ function changeTraveloElementUI() {
 
     // datepicker
     tjq('.datepicker-wrap input').datepicker({
+        dateFormat:'yy-mm-dd',
         showOn: 'button',
         buttonImage: 'images/icon/blank.png',
         buttonText: '',
