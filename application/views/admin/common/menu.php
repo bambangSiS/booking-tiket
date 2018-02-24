@@ -11,8 +11,8 @@
 	<section class="sidebar">
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header"> MENU NAVIGASI</li>
-			<li><a href="<?php echo base_url(); ?>admin">
-				<i class="fa fa-dashboard"></i> <span>Dasboard</span></a></li>
+			<li><a href="<?php echo base_url(); ?>admin/dashboard">
+				<i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 				<li class="treeview">
 					<a href="#">
 						<i class="fa fa-database"></i> <span>Manage Data</span>
@@ -22,7 +22,7 @@
 					</a>
 					<ul class="treeview-menu">
 						<li><a href="<?php echo base_url(); ?>admin/transportation"><i class="fa fa-plane"></i> Transportation</a></li>
-						<li><a><i class="fa fa-book"></i> Reservation</a></li>
+						<li><a href="<?php echo base_url(); ?>admin/reservation"><i class="fa fa-book"></i> Reservation</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/destinations"><i class="fa fa-building"></i> Destination</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/airport"><i class="fa fa-building-o"></i> Airport</a></li>
 						<li><a href="<?php echo base_url(); ?>admin/rute"><i class="fa fa-road"></i> Rute</a></li>

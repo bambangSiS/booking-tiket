@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
+/* https://github.com/ondol95/booking-tiket
 | -------------------------------------------------------------------
 | AUTO-LOADER
 | -------------------------------------------------------------------

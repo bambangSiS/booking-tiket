@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Kota Tujuan</title>
+	<title>Destination</title>
 	<?php $this->load->view('admin/common/scatas'); ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -22,46 +22,44 @@
 						<div class="box">
 							<div class="box-header">
 								<h3 class="box-title">Destination</h3>
-								<div class="box-tools">
-									<div class="input-group input-group-sm" style="width: 150px;">
-										<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-										<div class="input-group-btn">
-											<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-										</div>
-									</div>
-								</div>
 							</div>
-							<!-- /.box-header -->
-						<div class="box-body table-responsive no-padding">
-							<table class="table table-hover">
-							<tbody>
-								<tr>
-									<th width="15%">No</th>
-									<th>Kota</th>
-									<th>Kode</th>
-									<th width="15%">Jumlah Bandara</th>
-									<th width="15%">Action</th>
-									<?php $no = 1; ?>
-								</tr><?php foreach ($destination as $data){?>
-								<tr>
-									<td><?php  echo $no++; ?></td>
-									<td><?php echo $data->destination ?></td>
-									<td><?php echo $data->iso ?></td>
-									<td>cek</td>
-									<td><a type="button" href="<?php echo base_url('admin/destinations/edit/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
-										<a type="button" href="<?php echo base_url('admin/destinations/del/'.$data->id) ?>"  onclick="return confirm('Delete <?=$data->destination ?> ?');" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
-									<!-- <a class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a> --></td>
-								</tr><?php } ?>
-							</tbody>
-							</table>
-						</div>  
-					</div>
+							<div class="box-body">
+								<table id="example1" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th width="15%">No</th>
+											<th>Kota</th>
+											<th>Kode</th>
+											<th width="15%">Jumlah Bandara</th>
+											<th width="15%">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php $no = 1; ?>
+										<?php foreach ($destination as $data){?>
+										<tr>
+											<td><?php  echo $no++; ?></td>
+											<td><?php echo $data->destination ?></td>
+											<td><?php echo $data->iso ?></td>
+											<td>Contoh</td>
+											<td>
+												<a type="button" href="<?php echo base_url('admin/destinations/edit/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
+												<a type="button" href="<?php echo base_url('admin/destinations/del/'.$data->id) ?>"  onclick="return confirm('Delete <?=$data->destination ?> ?');" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
+											</td>
+										</tr>
+										<?php } ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
-	<div class="control-sidebar-bg"></div>
+</section>
+</div>
+<div class="control-sidebar-bg"></div>
 </div>
 <?php $this->load->view('admin/common/scbawah'); ?>
 </body>

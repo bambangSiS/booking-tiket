@@ -4,13 +4,26 @@ Class M_admin extends CI_Model
 
 	function sesiku(){
 		$this->session->set_flashdata('alert', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                
-                Login Pak
-              </div>');
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Login Pak</div>');
 		if($this->session->status != "online"){
 			redirect('admin/login','refresh');
 		}
+	}
+
+	function cairport(){
+		return $this->db->query('SELECT COUNT(*) as jumlah FROM airport;')->result();
+	}
+
+	function cdestination(){
+		return $this->db->query('SELECT COUNT(*) as jumlah FROM destination;')->result();
+	}
+
+	function ctransportation(){
+		return $this->db->query('SELECT COUNT(*) as jumlah FROM transportation;')->result();
+	}
+
+	function crute(){
+		return $this->db->query('SELECT COUNT(*) as jumlah FROM rute;')->result();
 	}
 
 	function tampil_user(){
@@ -47,18 +60,25 @@ Class M_admin extends CI_Model
 		$query= $this->db->query('SELECT A.*,B.name as maskapai FROM rute A, transportation B WHERE A.id_transportation=B.id '.$where.' ORDER BY creat_date DESC');
     	return $query->result();
 
-		$hasilquery=$this->db->get('rute',$config['per_page'],$this->uri->segment(3));
-		if ($hasilquery->num_rows()>0) {
-			foreach ($hasilquery->result() as $value) {
-				$data[]=$value;
-			}
-			return $data;
-		}
+		// $hasilquery=$this->db->get('rute',$config['per_page'],$this->uri->segment(3));
+		// if ($hasilquery->num_rows()>0) {
+		// 	foreach ($hasilquery->result() as $value) {
+		// 		$data[]=$value;
+		// 	}
+		// 	return $data;
+		// }
 		
     }
 
 	function tampil_transportation(){
 		return $this->db->get('transportation')->result();
+	}
+
+	function tampil_reservation(){
+		// $query = $this->db->query('SELECT R.*,C.id_users,C.name,C.noid,JR.rute_from,JR.rute_to,JA.name AS namefrom FROM reservation R, customer C JOIN rute JR JOIN airport JA WHERE R.customer_id=C.id AND R.rute_id=JR.id AND JR.rute_from=JA.id');
+		$query = $this->db->query('SELECT R.*,C.id_users,C.name,C.noid,JR.rute_from,JR.rute_to,(select name from airport where JR.rute_from=airport.id) AS mktndol,(select iso from airport where JR.rute_from=airport.id) AS codemkt,(select iso from airport where JR.rute_to=airport.id) AS codebli,(select name from airport where JR.rute_to=airport.id) AS blindol FROM reservation R, customer C JOIN rute JR JOIN airport JA WHERE R.customer_id=C.id AND R.rute_id=JR.id AND JR.rute_from=JA.id');
+		return $query->result();
+		// return $this->db->get('reservation')->result();
 	}
 
 	function tampil_destination(){
@@ -106,8 +126,7 @@ Class M_admin extends CI_Model
 		return $this->db->get($table,$id);
 	}
 
-	function update_destination($id){
-		$data = array('destination' =>$this->input->post('destination'));
+	function update_destination($id,$data){
 		$this->db->where('id', $id);
 		$this->db->update('destination', $data);
 	}

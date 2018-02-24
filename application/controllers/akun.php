@@ -5,7 +5,7 @@ class Akun extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
-	 *
+	 * https://github.com/ondol95/booking-tiket
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
 	 *	- or -
@@ -52,7 +52,9 @@ class Akun extends CI_Controller {
      {
      	$this->form_validation->set_rules('name', 'NAME','required');
      	$this->form_validation->set_rules('username', 'USERNAME','required');
-     	$this->form_validation->set_rules('email','EMAIL','required|valid_email');
+        $this->form_validation->set_rules('email','EMAIL','required|valid_email');
+        $this->form_validation->set_rules('telepon','TELEPON','required');
+     	$this->form_validation->set_rules('jenkel','JENKEL','required');
      	$this->form_validation->set_rules('password','PASSWORD','required');
      	$this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
      	if($this->form_validation->run() == FALSE) {
@@ -61,13 +63,15 @@ class Akun extends CI_Controller {
 
      		$data['nama']   =    $this->input->post('name');
      		$data['username'] =    $this->input->post('username');
-     		$data['email']  =    $this->input->post('email');
+            $data['email']  =    $this->input->post('email');
+            $data['telepon']  =    $this->input->post('telepon');
+     		$data['jenkel']  =    $this->input->post('jenkel');
      		$data['password'] =    md5($this->input->post('password'));
      		$this->m_account->daftar($data);
 
      		$pesan['message'] ="Pendaftaran berhasil";
 
-     		$this->load->view('akun/success',$pesan);
+     		$this->load->view('akun/login',$pesan);
      	}
      }
 

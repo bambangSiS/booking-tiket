@@ -1,10 +1,9 @@
-<?php echo json_encode(var_dump($airport));  ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Create Rute</title>
+	<title>Edit Rute</title>
 	<?php $this->load->view('admin/common/scatas'); ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -41,7 +40,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-building-o"></i>
 										</div>
-										<input name="name" type="text" class="form-control" required/>
+										<input name="name" type="text" class="form-control" value="" required/>
 									</div>
 									<div class="form-group">
 										<label>Kode : </label>

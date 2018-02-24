@@ -2,8 +2,9 @@
 <html>
 <head>
 	<!-- Page Title -->
-	<title>Travelo | Responsive HTML5 Travel Template</title>
-	
+	<?php foreach ($rute as $data) { ?>
+	<title>Tiket Pesawat <?php echo $data->dariiso; ?> ke <?php echo $data->keiso; ?> tanggal <?php echo date_format(date_create($data->depart_at), 'd M');  ?></title>
+	<?php } ?>
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
 	<meta name="keywords" `tent="HTML5 Template" />
@@ -222,7 +223,8 @@
 										<div class="details-wrapper">
 											<div class="first-row">
 												<div>
-													<h4 class="box-title"><?php echo $data->bandarafrom; ?> (<?php echo $data->isofrom; ?> )  - <?php echo $data->bandarato; ?> (<?php echo $data->isoto; ?> )  <small><?php echo $data->maskapai; ?></small></h4>
+													<h4 class="box-title"><?php echo $data->bandarafrom; ?> (<?php echo $data->isofrom; ?> )  - <?php echo $data->bandarato; ?> (<?php echo $data->isoto; ?> )
+														<small><?php echo $data->maskapai; ?> (<?php echo $data->code; ?>)</small></h4>
 												</div>
 												<div>
 													<span class="price"><small>Harga/orang</small>IDR. <?php echo $data->price; ?></span>

@@ -5,7 +5,7 @@ class Pesawat extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
-	 *
+	 * https://github.com/odol95/booking-tiket
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
 	 *	- or -
@@ -19,6 +19,7 @@ class Pesawat extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	function index(){
+		$this->load->view('home');
 	}
 
 	public function cari()
@@ -38,6 +39,9 @@ class Pesawat extends CI_Controller {
 		$id=$this->input->get('id');
 		$seat_qty=$this->input->get('seat_qty');
 
+		$this->session->set_flashdata('seat_qty', $seat_qty);
+
+		//$data['jml_seat']=$this->m_account->jml_seat();
 		$data['user']=$this->m_account->getuser($this->session->userdata('id'));
 		$data['rute']=$this->m_account->booking($id)->result();
 		$data['seat_qty']=$seat_qty;
@@ -45,17 +49,53 @@ class Pesawat extends CI_Controller {
 	}
 
 	function add_booking(){
-		$id = $this->input->post('id');
-		$id_users = $this->input->post('id_users');
-		$name = $this->input->post('name');
-		$noid = $this->input->post('noid');
 
-		$data = array(
-			'id' => $id,
-			'id_users' => $id_users,
-			'name' => $name,
-			'noid' => $noid,
-		);
-		$this->m_account->add_booking($data,'customer');
+		$waktu = date('dm');
+		// $id = $this->input->post('id');
+		$id_users = $this->input->post('id_users');
+
+		for($i = 0;$i < $this->session->seat_qty; $i++)
+		{
+			$name = $this->input->post('name');
+			$noid = $this->input->post('noid');
+			
+			$kursi = $this->input->post('seat_code');
+			
+			$data = array(
+				// 'id' => $id,
+				'id_users' => $id_users,
+				'name' => $name[$i],
+				'noid' => $noid[$i],
+			);
+			
+			$this->m_account->add_booking('customer', $data);
+			
+			//batas
+			
+			$kindol = $this->db->query('SELECT COUNT(id) as jumlah FROM `reservation` WHERE reservation_code like \'TOM'.$waktu.'%\'')->result()[0]->jumlah+1;
+
+			$reservation_code = 'TOM'.$waktu.$kindol;
+			$customer_id = $this->db->query('SELECT id FROM customer WHERE noid = \''.$noid[$i].'\'')->result()[0]->id;
+			$seat_code = $this->input->post('seat_code_'.$i);
+			$kiedie = $this->input->post('rute_id');
+			
+			
+		
+			$data = array(
+				'reservation_code' => $reservation_code,
+				'customer_id' => $customer_id,
+				'seat_code' => $kursi[$i],
+				'rute_id' => $kiedie,
+			);
+			
+			$this->m_account->add_booking('reservation', $data);
+		}
+		redirect('pesawat/payment','refresh');
+
+
+	}
+
+	function payment(){
+		$this->load->view('payment');
 	}
 }

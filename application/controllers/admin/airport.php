@@ -44,6 +44,7 @@ class Airport extends CI_Controller {
 
 	function edit($id)
 	{
+		$data['destination'] = $this->m_admin->tampil_destination();
 		$data['airport'] = $this->m_admin->edit_airport('airport',$id)->result();
 		$this->load->view('admin/airport/edit',$data);
 	}

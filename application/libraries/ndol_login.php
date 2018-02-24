@@ -31,7 +31,7 @@
      public function login($username, $password) {
          
          //cek username dan password
-         $query = $this->CI->db->get_where('users',array('username'=>$username,'password' => md5($password)));
+         $query = $this->CI->db->get_where('users',array('username'=>$username,'password' => md5($password),'level'=>0));
  
          if($query->num_rows() == 1) {
              //ambil data user berdasar username

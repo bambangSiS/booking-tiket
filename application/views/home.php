@@ -32,7 +32,7 @@
 						<div class="search-tab-content"><!-- KOTAK PENCARIAN -->
 							<!-- TIKET PESAWAT -->
 							<div class="tab-pane fade active in" id="flights-tab">
-								<form action="<?php echo base_url(); ?>pesawat/" method="get">
+								<form action="<?php echo base_url(); ?>pesawat/cari" method="get">
 									<h6 class="title"><b>Mau pergi ke mana om?</b></h6>
 									<div class="row">
 										<div class="col-md-4">
