@@ -44,26 +44,20 @@ class Airport extends CI_Controller {
 
 	function edit($id)
 	{
-		$data['destination'] = $this->m_admin->tampil_destination();
 		$data['airport'] = $this->m_admin->edit_airport('airport',$id)->result();
 		$this->load->view('admin/airport/edit',$data);
 	}
 
 	function update($id){
-		$id = $this->input->post('id');
-		$id_destination = $this->input->post('id_destination');
 		$name = $this->input->post('name');
 		$iso = $this->input->post('iso');
 
 		$data = array(
-			'id' => $id,
-			'id_destination' => $id_destination,
 			'name' => $name,
 			'iso' => $iso,
 		);
-		$this->m_admin->add_airport($data,'airport');
-		redirect('admin/airport');
-		$this->m_admin->update_airport($id);
+		$this->db->set($data);
+		$this->m_admin->update_airport($id,$data);
 		redirect('admin/airport','refresh');
 	}
 

@@ -23,11 +23,6 @@ class Destinations extends CI_Controller {
 
 	function add_destination()
 	{
-		// $data['destination'] = $this->input->post('destination');
-		// $this->m_admin->add_destination($data,'destination');
-		// $this->load->view('admin/destination/add', $data);
-		// redirect('admin/destinations','refresh');
-
 		$id = $this->input->post('id');
 		$destination = $this->input->post('destination');
 		$iso = $this->input->post('iso');

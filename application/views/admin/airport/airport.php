@@ -44,7 +44,7 @@
 											<td><?php echo $data->destination ?></td>
 											<td>
 												<a type="button" href="<?php echo base_url('admin/airport/edit/'.$data->id) ?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
-												<a type="button" href="<?php echo base_url('admin/airport/del/'.$data->id) ?>" onclick="return confirm('Delete ?')"  class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
+												<a type="button" href="<?php echo base_url('admin/airport/del/'.$data->id) ?>" onclick="return confirm('Delete <?=$data->name ?> ?')"  class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
 											</td>
 										</tr>
 										<?php } ?>

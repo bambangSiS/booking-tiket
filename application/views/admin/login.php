@@ -20,7 +20,7 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a><b>Om</b>Admin</a>
+			<a>Admin</a>
 		</div>
 		<div class="login-box-body">
 			<?= $this->session->alert; ?>

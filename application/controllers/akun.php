@@ -29,7 +29,10 @@ class Akun extends CI_Controller {
 
      public function index()
      {
-     	$this->load->view('akun/index');
+        $this->ndol_login->cek_login();
+        $data['user']=$this->m_account->getuser($this->session->userdata('id'));
+        $data['inyong']=$this->m_account->tiket_akun($this->session->userdata('id'));
+     	$this->load->view('akun/index',$data);
      }
 
      public function login()
@@ -44,39 +47,41 @@ class Akun extends CI_Controller {
          if($valid->run()) {
              $this->ndol_login->login($username,$password, base_url('akun'), base_url('akun/login'));
          }
+        $data['user']=$this->m_account->getuser($this->session->userdata('id'));
          // End fungsi login
-         $this->load->view('akun/login');
+         $this->load->view('akun/login',$data);
      }
 
      public function register()
      {
-     	$this->form_validation->set_rules('name', 'NAME','required');
-     	$this->form_validation->set_rules('username', 'USERNAME','required');
+        $this->form_validation->set_rules('name', 'NAME','required');
+        $this->form_validation->set_rules('username', 'USERNAME','required');
         $this->form_validation->set_rules('email','EMAIL','required|valid_email');
         $this->form_validation->set_rules('telepon','TELEPON','required');
-     	$this->form_validation->set_rules('jenkel','JENKEL','required');
-     	$this->form_validation->set_rules('password','PASSWORD','required');
-     	$this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
-     	if($this->form_validation->run() == FALSE) {
-     		$this->load->view('akun/register');
-     	}else{
+        $this->form_validation->set_rules('jenkel','JENKEL','required');
+        $this->form_validation->set_rules('password','PASSWORD','required');
+        $this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
+        if($this->form_validation->run() == FALSE) {
+            $this->load->view('akun/register');
+        }else{
 
-     		$data['nama']   =    $this->input->post('name');
-     		$data['username'] =    $this->input->post('username');
-            $data['email']  =    $this->input->post('email');
-            $data['telepon']  =    $this->input->post('telepon');
-     		$data['jenkel']  =    $this->input->post('jenkel');
-     		$data['password'] =    md5($this->input->post('password'));
-     		$this->m_account->daftar($data);
+            $data['nama']   = $this->input->post('name');
+            $data['username'] = $this->input->post('username');
+            $data['email']  = $this->input->post('email');
+            $data['telepon']  = $this->input->post('telepon');
+            $data['jenkel']  = $this->input->post('jenkel');
+            $data['password'] = md5($this->input->post('password'));
+            $this->m_account->daftar($data);
 
-     		$pesan['message'] ="Pendaftaran berhasil";
+            $pesan['message'] ="Pendaftaran berhasil";
 
-     		$this->load->view('akun/login',$pesan);
-     	}
+            $this->load->view('akun/login',$pesan);
+        }
      }
 
-     public function logout()
-     {
-         $this->ndol_login->logout();
-     }
+     function logout(){
+        $this->session->unset_userdata('id');
+        $this->session->sess_destroy('id');
+        redirect('akun/login','refresh');
+      }
  }

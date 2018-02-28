@@ -1,13 +1,6 @@
  <?php
  defined('BASEPATH') OR exit('No direct script access allowed');
  
- /*
-  * Simple_login Class
-  * Class ini digunakan untuk fitur login, proteksi halaman dan logout
-  * @author  Gun Gun Priatna
-  * @url    https://recodeku.blogspot.com
-  */
- 
  class Ndol_login {
  
      // SET SUPER GLOBAL
@@ -49,7 +42,7 @@
          }else{
  
              //jika tidak ada, set notifikasi dalam flashdata.
-             $this->CI->session->set_flashdata('sukses','Username atau password anda salah, silakan coba lagi.. ');
+             $this->CI->session->set_flashdata('alert','<div class="alert alert-danger alert-dismissable">Username atau password anda salah!</div>');
  
              //redirect ke halaman login
              redirect(site_url('akun/login'));
@@ -67,10 +60,10 @@
          if($this->CI->session->userdata('username') == '') {
  
              //set notifikasi
-             $this->CI->session->set_flashdata('sukses','Anda belum login');
+             $this->CI->session->set_flashdata('alert','<div class="alert alert-danger alert-dismissable">Anda belum login</div>');
  
              //alihkan ke halaman login
-             redirect(site_url('login'));
+             redirect(site_url('akun/login'));
          }
      }
  
@@ -79,10 +72,9 @@
       * ke halaman login
       */
      public function logout() {
-         $this->CI->session->unset_userdata('username');
-         $this->CI->session->unset_userdata('id_login');
-         $this->CI->session->unset_userdata('id');
-         $this->CI->session->set_flashdata('sukses','Anda berhasil logout');
-         redirect(site_url('login'));
+        // $this->CI->session->unset_userdata('username');
+        // $this->CI->session->unset_userdata('id_login');
+        // $this->CI->session->unset_userdata('id');
+        $this->session->sess_destroy();
      }
  }

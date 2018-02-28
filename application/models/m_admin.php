@@ -5,7 +5,7 @@ Class M_admin extends CI_Model
 	function sesiku(){
 		$this->session->set_flashdata('alert', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Login Pak</div>');
-		if($this->session->status != "online"){
+		if($this->session->statusadmin != "online"){
 			redirect('admin/login','refresh');
 		}
 	}
@@ -59,14 +59,6 @@ Class M_admin extends CI_Model
 		}
 		$query= $this->db->query('SELECT A.*,B.name as maskapai FROM rute A, transportation B WHERE A.id_transportation=B.id '.$where.' ORDER BY creat_date DESC');
     	return $query->result();
-
-		// $hasilquery=$this->db->get('rute',$config['per_page'],$this->uri->segment(3));
-		// if ($hasilquery->num_rows()>0) {
-		// 	foreach ($hasilquery->result() as $value) {
-		// 		$data[]=$value;
-		// 	}
-		// 	return $data;
-		// }
 		
     }
 
@@ -75,22 +67,11 @@ Class M_admin extends CI_Model
 	}
 
 	function tampil_reservation(){
-		// $query = $this->db->query('SELECT R.*,C.id_users,C.name,C.noid,JR.rute_from,JR.rute_to,JA.name AS namefrom FROM reservation R, customer C JOIN rute JR JOIN airport JA WHERE R.customer_id=C.id AND R.rute_id=JR.id AND JR.rute_from=JA.id');
-		$query = $this->db->query('SELECT R.*,C.id_users,C.name,C.noid,JR.rute_from,JR.rute_to,(select name from airport where JR.rute_from=airport.id) AS mktndol,(select iso from airport where JR.rute_from=airport.id) AS codemkt,(select iso from airport where JR.rute_to=airport.id) AS codebli,(select name from airport where JR.rute_to=airport.id) AS blindol FROM reservation R, customer C JOIN rute JR JOIN airport JA WHERE R.customer_id=C.id AND R.rute_id=JR.id AND JR.rute_from=JA.id');
+		$query = $this->db->query('SELECT R.*,C.id_users,C.name,C.noid,JR.rute_from,JR.rute_to,(select name from airport where JR.rute_from=airport.id) AS mktndol,(select iso from airport where JR.rute_from=airport.id) AS codemkt,(select iso from airport where JR.rute_to=airport.id) AS codebli,(select name from airport where JR.rute_to=airport.id) AS blindol FROM reservation R, customer C JOIN rute JR JOIN airport JA WHERE R.customer_id=C.id AND R.rute_id=JR.id AND JR.rute_from=JA.id ORDER BY reservation_date DESC');
 		return $query->result();
-		// return $this->db->get('reservation')->result();
 	}
 
 	function tampil_destination(){
-		// $hasilquery=$this->db->get('destination',$config['per_page'],$this->uri->segment(3));
-		// if ($hasilquery->num_rows()>0) {
-		// 	foreach ($hasilquery->result() as $value) {
-		// 		$data[]=$value;
-		// 	}
-		// 	return $data;
-		// }
-		// $jumlahbandara->$this->db->query('SELECT COUNT(name) FROM airport,destination WHERE airport.id_destination=4 AND destination.id=4');
-
 		return $this->db->get('destination')->result();
 	}
 
@@ -114,11 +95,13 @@ Class M_admin extends CI_Model
 		return $this->db->get_where($destination,$where);
 	}
 
+	function edit_user($users,$id){
+		return $this->db->get_where($users,$where);
+	}
 
-	function edit_airport($id){
-		$this->db->where('id', $id);
-		return $this->db->get('airport',$id);
-		// return $this->db->get_where($id);
+	function edit_airport($table,$id){
+		$query = $this->db->query('SELECT A.*,D.destination FROM airport A JOIN destination D WHERE A.id='.$id.' AND D.id=A.id_destination');
+		return $query;
 	}
 
 	function edit_transportation($table,$id){
@@ -128,7 +111,17 @@ Class M_admin extends CI_Model
 
 	function update_destination($id,$data){
 		$this->db->where('id', $id);
-		$this->db->update('destination', $data);
+		$this->db->update('users', $data);
+	}
+
+	function update_user($id,$data){
+		$this->db->where('id', $id);
+		$this->db->update('users', $data);
+	}
+
+	function update_airport($id,$data){
+		$this->db->where('id', $id);
+		$this->db->update('airport', $data);
 	}
 
 	function update_rute($id,$data){

@@ -61,8 +61,12 @@
 												} ?>
 											</td>
 											<td>
-												<a type="button" href="" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
-												<a type="button" href="<?php echo base_url('admin/members/hapus_member/').$data->id?>" onclick="return confirm('Delete ?')" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
+												<?php if ($data->level=='1' ) {
+													echo "";
+												}else { ?>
+												<a type="button" href="<?=base_url('admin/members/edit/').$data->id?>" class="btn btn-default btn-sm"><span class="fa fa-pencil"> Edit</span></a>
+												<a type="button" href="<?=base_url('admin/members/hapus_member/').$data->id?>" onclick="return confirm('Delete ?')" class="btn btn-default btn-sm"><span class="fa fa-trash"> Delete</span></a>
+												<?php } ?>
 											</td>
 										</tr>
 										<?php } ?>

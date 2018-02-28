@@ -6,6 +6,7 @@ class Reservation extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_admin');
+		$this->m_admin->sesiku();
 	}
 
 	public function index()

@@ -22,6 +22,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('m_admin');
+		$data['user']=$this->m_account->getuser($this->session->userdata('id'));
 		$data['destination']=$this->m_account->destination();
 		$this->load->view('home',$data);
 	}
@@ -29,5 +30,9 @@ class Home extends CI_Controller {
     function result(){
     	$data['rute']=$this->m_account->cari();
     	$this->load->view('cari', $data);
+    }
+
+    function payment(){
+    	$this->load->view('payment', $data);
     }
 }

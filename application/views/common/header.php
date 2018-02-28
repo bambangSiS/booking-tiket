@@ -13,37 +13,22 @@
 				<li class="ribbon currency">
 					<a href="#" title="">MY ACCOUNT</a>
 					<ul class="menu mini">
-						<li><a href="<?=base_url(); ?>akun/login" title="login">Login</a></li>
-						<li><a href="<?=base_url(); ?>akun/register" title="register">Register</a></li>
-					</ul>
-				</li>
-				<!-- <li><a href="<?php echo base_url(); ?>akun/Login/logout">LOGOUT</a></li> -->
-			</ul>
-		</div>
-	</div><!-- 
-	<div class="topnav hidden-xs">
-		<div class="container">
-			<ul class="quick-menu pull-left">
-				<li><a href="<?php echo base_url(); ?>akun">AKUN SAYA</a></li>
-				<li class="ribbon">
-					<a href="#">Bahasa</a>
-					<ul class="menu mini">
-						<li class="active"><a href="#" title="Indonesia">Indonesia</a></li>
-					</ul>
-				</li>
-			</ul>
-			<ul class="quick-menu pull-right">
-				<li><a href="<?php echo base_url(); ?>akun/login">MASUK</a></li>
-				<li><a href="<?php echo base_url(); ?>akun/register">DAFTAR</a></li>
-				<li class="ribbon currency">
-					<a href="#" title="">Mata Uang</a>
-					<ul class="menu mini">
-						<li class="active"><a href="#" title="IDR">Rupiah</a></li>
+						<?php
+						$wkwk = $user;
+
+						if ($wkwk = $wkwk) {
+							echo "<li><a href=\"http://localhost/ukk/akun/\" title=\"My Profile\">Profile</a></li>";
+							echo "<li><a href=\"http://localhost/ukk/akun/logout\"  title=\"Logout\">Logout</a></li>";
+						} else {
+							echo "<li><a href=\"http://localhost/ukk/akun/login\"  title=\"Login\">Login</a></li>";
+							echo "<li><a href=\"http://localhost/ukk/akun/register\"  title=\"Register\">Register</a></li>";
+						}
+						?>
 					</ul>
 				</li>
 			</ul>
 		</div>
-	</div> -->
+	</div>
 	<div class="main-header">
 		<a href="#mobile-menu-01" data-toggle="collapse" class="mobile-menu-toggle">
 			Mobile Menu Toggle
@@ -60,7 +45,7 @@
 						<a href="<?php echo base_url(); ?>">Home</a>
 					</li>
 					<li class="menu-item-has-children">
-						<a href="<?php echo base_url(); ?>tiket">Tiket Pesawat</a>
+						<a href="<?php echo base_url(); ?>pesawat">Tiket Pesawat</a>
 					</li>
 					<li class="menu-item-has-children">
 						<a href="<?php echo base_url(); ?>page/pembelian">Cara Pembelian</a>
@@ -70,9 +55,6 @@
 					</li>
 					<li class="menu-item-has-children">
 						<a href="<?php echo base_url(); ?>page/kontak">Hubungi Kami</a>
-					</li>
-					<li class="menu-item-has-children">
-						<a href="<?php echo base_url(); ?>admin">Admin</a>
 					</li>
 				</ul>
 			</nav>

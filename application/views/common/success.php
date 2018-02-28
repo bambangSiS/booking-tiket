@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- Page Title -->
-	<title>Payment</title>
+	<title>Success Booking</title>
 	
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
@@ -49,8 +49,8 @@
                 </div>
 				<ul class="breadcrumbs pull-right">
 					<li><a>Informasi Kontak</a></li>
-					<li class="active">Pembayaran</li>
-					<li><a>Selesai</a></li>
+					<li><a>Pembayaran</a></li>
+					<li class="active">Selesai</li>
 				</ul>
 			</div>
 		</div>
@@ -59,37 +59,21 @@
             <div class="container">
                 <div class="row">
                     <div id="main" class="col-sm-8 col-md-9">
-                    	<div class="booking-information travelo-box">
-                    		<h2>Pembayaran</h2>
-                    		<hr>
-                    		<div class="booking-confirmation clearfix">
-                    			<!-- <i class="soap-icon-recommend icon circle"></i> -->
-                    			<div class="message">
-                    				<h4 class="main-message">Pesanan anda sudah kami terima silahkan melakukan pembayaran.</h4><br>
-                    				<p>Kode konfirmasi pesanan adalah <b><?php echo $invoice ?></b></p>
-                    			</div>
-                    		</div><br>
-                    		<div class="col-md-5" style="padding-left: 0">
-                    		<select id="kiebank" name="kiebank" class="input-text full-width"  onchange="myFunction(value)">
-                    			<option value="">Pilih Bank</option>
-                    			<option value="Bank : Mandiri<br>Rekening : 132982184982<br>Nama : Tiket Om">Bank Mandiri</option>
-                    			<option value="Bank : BCA<br>Rekening : 13298231982<br>Nama : Tiket Om">Bank BCA</option>
-                    			<option value="Bank : BRI<br>Rekening : 132981232182<br>Nama : Tiket Om">Bank BRI</option>
-                    		</select>
-                    		</div>
-                    		<br><br>
-                    		<div class="message" style="margin-top:15px;">
-                    			<h4 id="bank" class="main-message"></h4> 
-                    		</div>
-                    		<hr>
-                    		<form action="success" method="POST">
-                    		<div class="form-group row">
-                    			<div class="col-sm-6 col-md-5">
-                    				<button type="submit" class="full-width btn-large">CONFIRM BOOKING</button>
-                    			</div>
-                    		</div>
-                    		</form>
-                    	</div>
+                        <div class="booking-information travelo-box">
+                            <h2>Success Booking</h2>
+                            <hr>
+                            <div class="booking-confirmation clearfix">
+                                <i class="soap-icon-recommend icon circle"></i>
+                                <div class="message">
+                                    <h4 class="main-message">Thank You. Your Booking Order is Confirmed Now.</h4>
+                                    <p>A confirmation email has been sent to your provided email address.</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <h2>View Booking Details</h2>
+                            <p>Praesent dolor lectus, rutrum sit amet risus vitae, imperdiet cursus neque. Nulla tempor nec lorem eu suscipit. Donec dignissim lectus a nunc molestie consectetur. Nulla eu urna in nisi adipiscing placerat. Nam vel scelerisque magna. Donec justo urna, posuere ut dictum <b><a href="<?=base_url() ?>akun">My Account</a></b> .</p>
+                            <!-- <a href="#" class="red-color underline view-link">https://www.travelo.com/booking-details/?=f4acb19f-9542-4a5c-b8ee</a> -->
+                        </div>
                     </div>
                     <div class="sidebar col-sm-4 col-md-3">
                         <div class="travelo-box contact-box">

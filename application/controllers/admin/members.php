@@ -16,6 +16,29 @@ class Members extends CI_Controller {
 		$this->load->view('admin/member/member',$data);
 	}
 
+	function edit($id){
+		$data['users'] = $this->m_admin->edit_transportation('users',$id)->result();
+		$this->load->view('admin/member/edit',$data);
+	}
+
+	function update($id){
+		$nama = $this->input->post('nama');
+		$email = $this->input->post('email');
+		$username = $this->input->post('username');
+		$telepon = $this->input->post('telepon');
+		$jenkel = $this->input->post('jenkel');
+
+		$data = array(
+			'nama' =>$nama,
+			'email' =>$email,
+			'username' =>$username,
+			'telepon' =>$telepon,
+			'jenkel' =>$jenkel,
+		);
+		$this->m_admin->update_destination($id,$data);
+		redirect('admin/members','refresh');
+	}
+
 	public function hapus_user($id)
 	{
 		$this->m_admin->hapus_user($id);

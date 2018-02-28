@@ -11,7 +11,7 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('admin/login');
 
-		if($this->session->status == 'online'){
+		if($this->session->statusadmin == 'online'){
 			redirect('admin/dashboard','refresh');
 		}
 
@@ -28,17 +28,15 @@ class Login extends CI_Controller {
          $query = $this->db->get_where('users',$where);
  
          if($query->num_rows() == 1) {
-             //ambil data user berdasar username
-             //$row  = $this->db->query('SELECT * FROM users where username = "'.html_escape($this->input->get('username')).'"');
              $admin     = $query->row();
              $id   = $admin->id;
  
              //set session user
-             $this->session->set_userdata('name', $admin->nama);
-             $this->session->set_userdata('username', $admin->username);
-             $this->session->set_userdata('status', 'online');
-             $this->session->set_userdata('id_login', uniqid(rand()));
-             $this->session->set_userdata('id', $id);
+             $this->session->set_userdata('nameadmin', $admin->nama);
+             $this->session->set_userdata('usernameadmin', $admin->username);
+             $this->session->set_userdata('statusadmin', 'online');
+             $this->session->set_userdata('id_loginadmin', uniqid(rand()));
+             $this->session->set_userdata('idadmin', $id);
  
              //redirect ke halaman dashboard
             redirect(site_url('admin/dashboard'));

@@ -19,7 +19,7 @@ class Pesawat extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	function index(){
-		$this->load->view('home');
+		redirect('');
 	}
 
 	public function cari()
@@ -44,12 +44,12 @@ class Pesawat extends CI_Controller {
 		//$data['jml_seat']=$this->m_account->jml_seat();
 		$data['user']=$this->m_account->getuser($this->session->userdata('id'));
 		$data['rute']=$this->m_account->booking($id)->result();
+		$data['booked']=$this->m_account->treservation($id);
 		$data['seat_qty']=$seat_qty;
-		$this->load->view('booking',$data);	
+		$this->load->view('booking',$data);
 	}
 
-	function add_booking(){
-
+	function payment(){
 		$waktu = date('dm');
 		// $id = $this->input->post('id');
 		$id_users = $this->input->post('id_users');
@@ -78,8 +78,7 @@ class Pesawat extends CI_Controller {
 			$customer_id = $this->db->query('SELECT id FROM customer WHERE noid = \''.$noid[$i].'\'')->result()[0]->id;
 			$seat_code = $this->input->post('seat_code_'.$i);
 			$kiedie = $this->input->post('rute_id');
-			
-			
+			$price = $this->input->post('price');
 		
 			$data = array(
 				'reservation_code' => $reservation_code,
@@ -87,15 +86,23 @@ class Pesawat extends CI_Controller {
 				'seat_code' => $kursi[$i],
 				'rute_id' => $kiedie,
 			);
-			
+			$reservationp=$this->input->post('id_users');
 			$this->m_account->add_booking('reservation', $data);
+
+			// batas maning
+			$telepon = $this->input->post('telepon');
+			$invoice = 'INV'.$waktu.$telepon;
+
+			$data = array(
+				'telepon' => $telepon,
+				'invoice' => $invoice,
+			);
+			
 		}
-		redirect('pesawat/payment','refresh');
-
-
+		$this->load->view('payment',$data);
 	}
 
-	function payment(){
-		$this->load->view('payment');
+	function success(){
+		$this->load->view('common/success');
 	}
 }

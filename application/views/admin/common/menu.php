@@ -4,8 +4,8 @@
 			<img src="<?php echo base_url(); ?>gudang/admin/dist/img/user8-128x128.jpg" class="img-circle" alt="User Image">
 		</div>
 		<div class="pull-left info">
-			<p><?= $this->session->name ?></p>
-			<a href="#"><i class="fa fa-circle text-success"></i> <?= $this->session->status ?></a>
+			<p><?= $this->session->nameadmin ?></p>
+			<a href="#"><i class="fa fa-circle text-success"></i> <?= $this->session->statusadmin ?></a>
 		</div>
 	</div>
 	<section class="sidebar">
@@ -51,7 +51,7 @@
 						</span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="#"><i class="fa fa-book"></i> Reservation</a></li>
+						<li><a href="#"><i class="fa fa-credit-card"></i> Payment</a></li>
 					</ul>
 				</li>
 			</li>

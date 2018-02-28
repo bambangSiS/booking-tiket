@@ -8,7 +8,6 @@
 	<div class="wrapper">
 		<?php $this->load->view('admin/common/header'); ?>
 		<?php $this->load->view('admin/common/menu'); ?>
-
 		<div class="content-wrapper">
 			<section class="content-header">
 				<h1>Dashboard</h1>
@@ -16,12 +15,10 @@
 			<section class="content">
 				<div class="row">
 					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
 						<div class="small-box bg-aqua">
 							<div class="inner">
 								<h3><?=$cdestination[0]->jumlah ?>
 								</h3>
-
 								<p>Kota</p>
 							</div>
 							<div class="icon">
@@ -30,9 +27,7 @@
 							<a href="<?=base_url() ?>admin/destinations" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
-					<!-- ./col -->
 					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
 						<div class="small-box bg-green">
 							<div class="inner">
 								<h3><?=$cairport[0]->jumlah ?></h3>
@@ -44,9 +39,7 @@
 							<a href="<?=base_url() ?>admin/airport" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
-					<!-- ./col -->
 					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
 						<div class="small-box bg-yellow">
 							<div class="inner">
 								<h3><?=$ctransportation[0]->jumlah ?></h3>
@@ -58,9 +51,7 @@
 							<a href="<?=base_url() ?>admin/transportation" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
-					<!-- ./col -->
 					<div class="col-lg-3 col-xs-6">
-						<!-- small box -->
 						<div class="small-box bg-red">
 							<div class="inner">
 								<h3><?=$crute[0]->jumlah ?></h3>
@@ -72,7 +63,6 @@
 							<a href="<?=base_url() ?>admin/rute" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
-					<!-- ./col -->
 				</div>
 			</div>
 		</section>

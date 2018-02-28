@@ -60,7 +60,7 @@
 					<div id="main" class="col-sms-6 col-sm-8 col-md-9">
 						<div class="booking-section travelo-box">
 
-							<form action="<?=base_url(); ?>pesawat/add_booking" class="booking-form" method="POST">
+							<form action="<?=base_url(); ?>pesawat/payment" class="booking-form" method="POST">
 								<div class="person-information">
 									<h2>Informasi Kontak</h2>
 									<?php
@@ -97,6 +97,7 @@
 											</div>
 										</div>
 										<input type="hidden" name="id_users" value="<?=$key->id ?>">
+										<input type="hidden" name="telepon" value="<?=$key->telepon ?>">
 									</div>
 									<div class="card-information">
 										<?php for($x=1;$x<=$seat_qty;$x++) {?>
@@ -110,21 +111,41 @@
 												<label>Nomor Identitas</label>
 												<input type="text" name="noid[]" class="input-text full-width" value="" placeholder="" required />
 											</div>
-											<!-- <div class="col-sm-2">
-												<label>Pilih Kursi</label>
-												<div class="input-group">
-													<input id="kursi" data-toggle="modal" data-id="kursi<?= $x?>" data-target="#modalkursi" name="seat_code" type="text" class="input-text full-width" required="">
-												</div>
-											</div> -->
 										</div>
 										<?php }?>
 									</div>
-									<a href="#"><span class="skin-color">Pilih Kursi</span></a><br><br>
 
-									<?php $yeah=90; ?>
+									<a href="#"><span class="skin-color">Pilih Kursi</span></a><br><br>
+									<?php foreach ($rute as $key) { ?>
+									
+										<?php $yeah=$key->seat_qty; 
+											$kursipesan = array();
+											foreach ($booked as $seat) {
+												$kursipesan[] = $seat->seat_code;
+											}
+										 ?>
+
+									<?php } ?>
+									 <style type="text/css">
+									 	.kursiorang{
+									 		display: none;
+									 	}
+									 	.kursiorang + .state.p-success-o label::after{
+									 		background-color: red;
+									 	}
+									 </style>
 									<?php for($i = 1; $i <= $yeah; $i++) {?>
 									<div class="pretty p-default p-curve">
-										<input type="checkbox" name="seat_code[]" value="<?=sprintf("%03d", $i);?>" required/>
+
+										<input type="checkbox" name="seat_code[]"  
+											<?php
+												if(in_array($i, $kursipesan)){
+													echo "class='kursiorang' ";
+												}else{
+
+												}
+											?>
+										 value="<?=sprintf("%03d", $i);?>" required/>
 										<div class="state p-success-o">
 											<label><?=sprintf("%03d", $i);?></label>
 										</div>
@@ -221,18 +242,14 @@
 	<script >
 		$(document).on('ready',function(){
 			var limit = <?php echo $_GET['seat_qty']?>-1;
-
 			tjq("input[name='seat_code[]']").on('change',function(){
-
 				if(tjq("input[name='seat_code[]']:checked").length >= limit ){
 					tjq("input[name='seat_code[]']").not(':checked').attr('disabled',true);
 					if( tjq("input[name='seat_code[]']:checked").length <= limit ){
 						tjq("input[name='seat_code[]']").not(':checked').attr('disabled',false);
 					}
 				}
-
-			})	
-			
+			})
 		})
 	</script>
 	<script type="text/javascript" src="<?=base_url() ?>gudang/js/jquery.noconflict.js"></script>

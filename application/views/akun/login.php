@@ -39,9 +39,9 @@
     <!-- LOGIN -->
     <div id="travelo-login" class="login-box" style="padding-top: 65px; width: 300px; margin: 0 auto;">
     <?php
-      if($this->session->flashdata('sukses'))
+      if($this->session->flashdata('alert'))
       {
-           echo '<p class="warning" style="margin: 10px 20px;">'.$this->session->flashdata('sukses').'</p>';
+           echo '<p class="warning" style="margin: 10px 20px;">'.$this->session->flashdata('alert').'</p>';
       }
     ?>
         <div class="seperator" style="text-align: center;"><label>LOGIN</label></div>
